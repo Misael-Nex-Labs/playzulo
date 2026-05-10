@@ -22,6 +22,7 @@ import { soundManager } from "@/lib/sounds";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface GameViewProps {
   game: Game;
@@ -46,6 +47,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
   }, []);
 
   const GameIcon = iconMap[game.icon] || Gamepad2;
+  const router = useRouter();
 
   // Mapa de componentes de jogo reais
   const gameComponents: Record<string, React.ReactNode> = {
@@ -58,24 +60,24 @@ export default function GameView({ game, otherGames }: GameViewProps) {
       <div className="fixed inset-0 pointer-events-none opacity-20 overflow-hidden z-0">
         <div 
           className="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-[100px]" 
-          style={{ backgroundColor: `var(--color-${game.color})` }}
+          style={{ backgroundColor: `var(--${game.color})` }}
         />
         <div 
           className="absolute top-1/2 -left-24 w-64 h-64 rounded-full blur-[80px]" 
-          style={{ backgroundColor: `var(--color-${game.color})` }}
+          style={{ backgroundColor: `var(--${game.color})` }}
         />
       </div>
 
       <nav className="max-w-6xl mx-auto px-6 py-8 relative z-10">
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group"
+        <button 
+          onClick={() => router.back()}
+          className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group cursor-pointer"
         >
           <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
             <ArrowLeft size={16} />
           </div>
-          Voltar para Início
-        </Link>
+          Voltar
+        </button>
       </nav>
 
       <main className="max-w-5xl mx-auto px-6 relative z-10">
