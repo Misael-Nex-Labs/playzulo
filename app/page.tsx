@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { games } from "@/lib/games";
 
 // Variantes de animação do AGENTS.md
 const cardVariants: Variants = {
@@ -50,29 +51,7 @@ const categories = [
   { name: "Memória", slug: "memoria", icon: Brain, color: "bg-zen-cream" },
 ];
 
-const featuredGames = [
-  {
-    title: "Bolhas de Sabão",
-    slug: "bolhas-de-sabao",
-    ageRange: "1-3 anos",
-    image: "https://images.unsplash.com/photo-1518173946687-a4c8a9b749f5?w=400&h=300&fit=crop",
-    color: "zen-blue"
-  },
-  {
-    title: "Pintura Zen",
-    slug: "pintura-zen",
-    ageRange: "2-5 anos",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop",
-    color: "zen-green"
-  },
-  {
-    title: "Onde Está o Som?",
-    slug: "onde-esta-o-som",
-    ageRange: "1-4 anos",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=crop",
-    color: "zen-yellow"
-  }
-];
+const featuredGames = games.slice(0, 3);
 
 export default function Home() {
   return (
