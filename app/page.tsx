@@ -53,14 +53,20 @@ const categories = [
 
 const featuredGames = games.slice(0, 3);
 
+import React, { useState, useEffect } from "react";
+
 export default function Home() {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   return (
     <div className="min-h-screen bg-zen-bg text-zen-gray font-sans overflow-x-hidden">
       {/* Header */}
       <header className="w-full py-8 px-6 md:px-12 flex flex-col items-center text-center gap-2">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.8 }}
           className="flex items-center"
         >
@@ -85,7 +91,8 @@ export default function Home() {
         <section className="py-16 md:py-24 flex flex-col items-center text-center gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
           >
@@ -101,6 +108,8 @@ export default function Home() {
           <motion.div
             whileTap="tap"
             variants={tapEffect}
+            initial="initial"
+            animate="animate"
           >
             <Link 
               href="/jogos" 
@@ -126,7 +135,6 @@ export default function Home() {
                 variants={cardVariants}
                 initial="initial"
                 whileInView="animate"
-                viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
               >
                 <Link 
@@ -159,7 +167,6 @@ export default function Home() {
                 variants={cardVariants}
                 initial="initial"
                 whileInView="animate"
-                viewport={{ once: true }}
                 transition={{ delay: 0.3 + idx * 0.1 }}
                 className="group bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-white hover:border-zen-cream"
               >

@@ -18,6 +18,9 @@ import {
   Brain,
   Flower
 } from "lucide-react";
+import React, { useState } from "react";
+import TocarNasBolhas from "@/components/games/TocarNasBolhas";
+import { soundManager } from "@/lib/sounds";
 
 // Mapeamento de ícones do games.ts para componentes Lucide
 const iconMap: Record<string, any> = {
@@ -35,7 +38,13 @@ interface GameViewProps {
 }
 
 export default function GameView({ game, otherGames }: GameViewProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
   const GameIcon = iconMap[game.icon] || Gamepad2;
+
+  // Mapa de componentes de jogo reais
+  const gameComponents: Record<string, React.ReactNode> = {
+    'tocar-nas-bolhas': <TocarNasBolhas />,
+  };
 
   return (
     <motion.div 
@@ -79,41 +88,52 @@ export default function GameView({ game, otherGames }: GameViewProps) {
           </h1>
         </header>
 
-        {/* Área do Jogo (Placeholder) */}
+        {/* Área do Jogo */}
         <section className="relative group">
           <div className="aspect-[4/3] md:aspect-video bg-white rounded-[2.5rem] shadow-sm border-4 border-white flex flex-col items-center justify-center p-8 text-center gap-8 overflow-hidden relative">
-            {/* Background Decorativo Suave */}
-            <div 
-              className="absolute inset-0 opacity-10" 
-              style={{ backgroundColor: `var(--color-${game.color})` }}
-            />
-            
-            <div 
-              className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center animate-pulse"
-              style={{ 
-                backgroundColor: `var(--color-${game.color})`,
-                opacity: 0.3,
-                color: `var(--color-zen-gray)`
-              }}
-            >
-              <GameIcon size={64} />
-            </div>
+            {isPlaying && gameComponents[game.slug] ? (
+              <div className="absolute inset-0 w-full h-full z-20">
+                {gameComponents[game.slug]}
+              </div>
+            ) : (
+              <>
+                {/* Background Decorativo Suave */}
+                <div 
+                  className="absolute inset-0 opacity-10" 
+                  style={{ backgroundColor: `var(--color-${game.color})` }}
+                />
+                
+                <div 
+                  className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center animate-pulse"
+                  style={{ 
+                    backgroundColor: `var(--color-${game.color})`,
+                    opacity: 0.3,
+                    color: `var(--color-zen-gray)`
+                  }}
+                >
+                  <GameIcon size={64} />
+                </div>
 
-            <button 
-              className="relative z-10 text-white px-12 py-6 rounded-full text-2xl font-extrabold flex items-center gap-4 shadow-xl hover:scale-105 transition-transform active:scale-95 border-b-4"
-              style={{ 
-                backgroundColor: `var(--color-${game.color})`,
-                borderColor: `var(--color-${game.color}-dark)`
-              }}
-              onClick={() => alert('O jogo está sendo carregado... em breve!')}
-            >
-              <Play size={32} fill="currentColor" />
-              Clique para Iniciar
-            </button>
-            
-            <p className="text-sm opacity-50 font-bold max-w-xs relative z-10">
-              Ambiente seguro: sem anúncios, sem compras e totalmente gratuito.
-            </p>
+                <button 
+                  className="relative z-10 text-white px-12 py-6 rounded-full text-2xl font-extrabold flex items-center gap-4 shadow-xl hover:scale-105 transition-transform active:scale-95 border-b-4"
+                  style={{ 
+                    backgroundColor: `var(--color-${game.color})`,
+                    borderColor: `var(--color-${game.color}-dark)`
+                  }}
+                  onClick={() => {
+                    soundManager.unlock();
+                    setIsPlaying(true);
+                  }}
+                >
+                  <Play size={32} fill="currentColor" />
+                  Clique para Iniciar
+                </button>
+                
+                <p className="text-sm opacity-50 font-bold max-w-xs relative z-10">
+                  Ambiente seguro: sem anúncios, sem compras e totalmente gratuito.
+                </p>
+              </>
+            )}
           </div>
         </section>
 
