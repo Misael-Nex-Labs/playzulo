@@ -9,7 +9,6 @@ import {
   Brain, 
   ArrowRight, 
   Gamepad2, 
-  Heart 
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,14 +17,12 @@ import { games } from "@/lib/games";
 // Variantes de animação do AGENTS.md
 const cardVariants: Variants = {
   initial: {
-    opacity: 0,
-    y: 20,
-    filter: "blur(5px)"
+    opacity: 0.2, 
+    y: 10,
   },
   animate: {
     opacity: 1,
     y: 0,
-    filter: "blur(0)",
     transition: {
       duration: 0.6,
       ease: "easeOut"
@@ -64,9 +61,8 @@ export default function Home() {
       {/* Header */}
       <header className="w-full py-8 px-6 md:px-12 flex flex-col items-center text-center gap-2">
         <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px" }}
+          initial={false} // Garante que seja visível desde o primeiro frame
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="flex items-center"
         >
@@ -88,18 +84,17 @@ export default function Home() {
 
       <main className="max-w-6xl mx-auto px-6 pb-24">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 flex flex-col items-center text-center gap-8">
+        <section className="pt-8 pb-16 md:py-24 flex flex-col items-center text-center gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={isMounted ? { opacity: 0, y: 10 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="space-y-6"
           >
-            <h2 className="text-5xl font-bold md:text-6xl text-zen-gray leading-tight">
+            <h2 className="text-4xl font-bold md:text-6xl text-zen-gray leading-tight">
               Jogos gratuitos <br/> para crianças
             </h2>
-            <p className="text-xl font-regular md:text-2xl opacity-90 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg font-regular md:text-2xl opacity-90 max-w-2xl mx-auto leading-relaxed">
               Ambiente seguro, sem anúncios agitados e focado no aprendizado suave. 
               Feito com carinho para bebês e crianças de 1 a 5 anos.
             </p>
@@ -108,8 +103,6 @@ export default function Home() {
           <motion.div
             whileTap="tap"
             variants={tapEffect}
-            initial="initial"
-            animate="animate"
           >
             <Link 
               href="/jogos" 
@@ -133,13 +126,14 @@ export default function Home() {
               <motion.div
                 key={cat.slug}
                 variants={cardVariants}
-                initial="initial"
+                initial={isMounted ? "initial" : "animate"}
                 whileInView="animate"
+                viewport={{ amount: 0.1 }}
                 transition={{ delay: idx * 0.1 }}
               >
                 <Link 
                   href={`/categorias/${cat.slug}`}
-                  className="group flex flex-col items-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all hover:translate-y-[-4px] shadow-sm"
+                  className="group flex h-full flex-col items-center justify-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all hover:translate-y-[-4px] shadow-sm"
                 >
                   <div 
                     className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${cat.color}`}
@@ -165,8 +159,9 @@ export default function Home() {
               <motion.div
                 key={game.slug}
                 variants={cardVariants}
-                initial="initial"
+                initial={isMounted ? "initial" : "animate"}
                 whileInView="animate"
+                viewport={{ amount: 0.1 }}
                 transition={{ delay: 0.3 + idx * 0.1 }}
                 className="group bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-white hover:border-zen-cream"
               >
@@ -212,9 +207,11 @@ export default function Home() {
                 height={24} 
                 className="w-6 h-6 object-contain"
               />
-              PlayZulo © 2024
+              PlayZulo © 2026
             </div>
             <p className="text-sm opacity-60">Feito com carinho para crianças pequenas.</p>
+            <br />
+            <p className="text-xs opacity-60">Desenvolvido por Misael Lima</p>
           </div>
           
           <div className="flex gap-8 font-bold text-zen-gray/80">

@@ -4,20 +4,30 @@
   --font-sans: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fredoka), system-ui, sans-serif;
   
-  /* Custom Zen Palette */
-  --color-zen-blue: #e0f7ff;
-  --color-zen-green: #ABBB6C;
-  --color-zen-green-dark: #9AA557;
-  --color-zen-yellow: #ffe0b2;
-  --color-zen-pink: #f8bbd0;
-  --color-zen-cream: #fff9c4;
-  --color-zen-gray: #607d8b;
-  --color-zen-bg: #fffcf5;
+  /* Custom Zen Palette para o Tailwind */
+  --color-zen-blue: var(--zen-blue);
+  --color-zen-green: var(--zen-green);
+  --color-zen-green-dark: var(--zen-green-dark);
+  --color-zen-yellow: var(--zen-yellow);
+  --color-zen-pink: var(--zen-pink);
+  --color-zen-cream: var(--zen-cream);
+  --color-zen-gray: var(--zen-gray);
+  --color-zen-bg: var(--zen-bg);
 }
 
 :root {
-  --background: var(--color-zen-bg);
-  --foreground: var(--color-zen-gray);
+  /* Variáveis nativas do CSS */
+  --zen-blue: #e0f7ff;
+  --zen-green: #ABBB6C;
+  --zen-green-dark: #9AA557;
+  --zen-yellow: #ffe0b2;
+  --zen-pink: #f8bbd0;
+  --zen-cream: #fff9c4;
+  --zen-gray: #607d8b;
+  --zen-bg: #fffcf5;
+
+  --background: var(--zen-bg);
+  --foreground: var(--zen-gray);
 }
 
 body {

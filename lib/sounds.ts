@@ -35,18 +35,23 @@ class SoundManager {
    * Deve ser chamado em um evento de clique do usuário.
    */
   public unlock() {
-    this.init();
-    console.log("🔓 Tentando destravar áudio...");
-    
-    // Toca um som silencioso para validar o contexto
-    const silence = new Howl({
-      src: ['data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA='],
-      onplay: () => console.log("🔊 Áudio destravado com sucesso!")
-    });
-    silence.play();
+    try {
+      this.init();
+      console.log("🔓 Tentando destravar áudio...");
+      
+      if (Howler.ctx && Howler.ctx.state === "suspended") {
+        Howler.ctx.resume().catch(e => console.warn("Erro ao resumir context:", e));
+      }
 
-    if (Howler.ctx && Howler.ctx.state === "suspended") {
-      Howler.ctx.resume();
+      // Toca um som silencioso
+      const silence = new Howl({
+        src: ['data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA='],
+        onplay: () => console.log("🔊 Áudio destravado!"),
+        onplayerror: (id, err) => console.warn("Erro no play de destrave:", err)
+      });
+      silence.play();
+    } catch (e) {
+      console.error("Falha crítica no unlock de áudio:", e);
     }
   }
 
