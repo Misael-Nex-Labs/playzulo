@@ -23,6 +23,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import OJardimQueAcorda from "@/components/games/OJardimQueAcorda";
+import ArrastarFormas from "@/components/games/ArrastarFormas";
 
 interface GameViewProps {
   game: Game;
@@ -52,6 +54,8 @@ export default function GameView({ game, otherGames }: GameViewProps) {
   // Mapa de componentes de jogo reais
   const gameComponents: Record<string, React.ReactNode> = {
     'tocar-nas-bolhas': <TocarNasBolhas />,
+    'o-jardim-que-acorda': <OJardimQueAcorda />,
+    'arrastar-formas': <ArrastarFormas />,
   };
 
   return (
