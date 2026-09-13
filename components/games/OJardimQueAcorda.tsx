@@ -66,7 +66,7 @@ export default function OJardimQueAcorda() {
     const flower: Flower = {
       id: nextId.current++,
       x: Math.max(5, Math.min(95, ((clientX - bounds.left) / bounds.width) * 100)),
-      y: Math.max(8, Math.min(78, ((clientY - bounds.top) / bounds.height) * 100)),
+      y: Math.max(8, Math.min(95, ((clientY - bounds.top) / bounds.height) * 100)),
       size: 62 + Math.random() * 42,
       color: FLOWER_COLORS[Math.floor(Math.random() * FLOWER_COLORS.length)],
       centerColor: CENTER_COLORS[Math.floor(Math.random() * CENTER_COLORS.length)],
@@ -103,7 +103,7 @@ export default function OJardimQueAcorda() {
   return (
     <div
       ref={containerRef}
-      className="relative h-full w-full overflow-hidden rounded-[2rem] bg-zen-blue"
+      className="relative h-full w-full overflow-hidden rounded-[2rem] bg-sky-100"
       style={{ touchAction: "none" }}
       onPointerDown={handlePointerDown}
       onTouchStart={handleTouchStart}
