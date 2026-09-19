@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { soundManager } from "@/lib/sounds";
+import Image from "next/image";
 
 type Animal =
   | "elefante"
@@ -67,22 +68,37 @@ function createCards(level: number): Card[] {
   }));
 }
 
+const ANIMAL_IMAGES: Record<Animal, string> = {
+  elefante: "/images/elephant.png",
+  leao: "/images/lion.png",
+  girafa: "/images/giraffe.png",
+  passarinho: "/images/bird.png",
+  coelho: "/images/rabbit.png",
+  raposa: "/images/fox.png",
+  urso: "/images/bear.png",
+  gato: "/images/cat.png",
+};
+
 function AnimalIllustration({ animal }: { animal: Animal }) {
-  const color = ANIMAL_COLORS[animal];
+  const imgSrc = ANIMAL_IMAGES[animal];
+  const label = ANIMAL_LABELS[animal];
 
   return (
-    <svg viewBox="0 0 120 100" className="h-[clamp(3.5rem,13vw,6.5rem)] w-[clamp(4rem,16vw,7rem)]" aria-hidden="true">
-      <g stroke="var(--color-zen-gray)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" opacity="0.82">
-        {animal === "elefante" && <><ellipse cx="57" cy="57" rx="35" ry="25" fill={color} /><circle cx="34" cy="44" r="17" fill={color} /><path d="M24 55c-10 10-9 24 2 25 9 1 11-9 8-17" fill="none" /><circle cx="29" cy="41" r="2" fill="var(--color-zen-gray)" /></>}
-        {animal === "leao" && <><circle cx="59" cy="50" r="31" fill="var(--color-zen-yellow)" /><circle cx="59" cy="50" r="20" fill="#ffe9c9" /><circle cx="52" cy="48" r="2" fill="var(--color-zen-gray)" /><circle cx="66" cy="48" r="2" fill="var(--color-zen-gray)" /><path d="M56 56q3 3 6 0" fill="none" /></>}
-        {animal === "girafa" && <><path d="M47 75V32q0-15 13-15t13 15v43" fill={color} /><ellipse cx="60" cy="78" rx="30" ry="15" fill={color} /><circle cx="60" cy="24" r="14" fill={color} /><circle cx="54" cy="23" r="2" fill="var(--color-zen-gray)" /><circle cx="68" cy="23" r="2" fill="var(--color-zen-gray)" /><circle cx="52" cy="45" r="4" fill="#e9aebd" stroke="none" /><circle cx="67" cy="62" r="4" fill="#e9aebd" stroke="none" /></>}
-        {animal === "passarinho" && <><ellipse cx="58" cy="55" rx="31" ry="23" fill={color} /><circle cx="82" cy="42" r="17" fill={color} /><path d="M94 43l16 7-16 6z" fill="var(--color-zen-yellow)" /><path d="M58 54q-13-17-25 0 12 15 25 0" fill="var(--color-zen-blue)" /><circle cx="87" cy="39" r="2" fill="var(--color-zen-gray)" /></>}
-        {animal === "coelho" && <><ellipse cx="60" cy="62" rx="28" ry="23" fill={color} /><circle cx="60" cy="42" r="20" fill={color} /><path d="M48 28 46 8q1-8 8 0l6 17M67 25l7-18q4-6 7 2l-4 22" fill={color} /><circle cx="54" cy="40" r="2" fill="var(--color-zen-gray)" /><circle cx="67" cy="40" r="2" fill="var(--color-zen-gray)" /><circle cx="60" cy="47" r="3" fill="#e9aebd" stroke="none" /></>}
-        {animal === "raposa" && <><path d="M28 35 38 12l19 15 19-15 10 23v28q-27 22-58 0z" fill={color} /><path d="m40 27 8 20 10-10 10 10 8-20" fill="#fff1d8" stroke="none" /><circle cx="51" cy="46" r="2" fill="var(--color-zen-gray)" /><circle cx="69" cy="46" r="2" fill="var(--color-zen-gray)" /></>}
-        {animal === "urso" && <><circle cx="42" cy="32" r="12" fill={color} /><circle cx="78" cy="32" r="12" fill={color} /><circle cx="60" cy="54" r="29" fill={color} /><ellipse cx="60" cy="61" rx="14" ry="11" fill="#f4dfc2" /><circle cx="51" cy="51" r="2" fill="var(--color-zen-gray)" /><circle cx="69" cy="51" r="2" fill="var(--color-zen-gray)" /></>}
-        {animal === "gato" && <><path d="M31 37 34 13l20 15q6-3 12 0l20-15 3 24v27q-29 22-58 0z" fill={color} /><path d="M52 52h16" /><circle cx="49" cy="45" r="2" fill="var(--color-zen-gray)" /><circle cx="71" cy="45" r="2" fill="var(--color-zen-gray)" /><path d="M60 51q3 3 6 0" fill="none" /></>}
-      </g>
-    </svg>
+    <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-1 sm:gap-2 pointer-events-none select-none">
+      <div className="relative w-[75%] h-[65%] mb-1 sm:mb-2">
+        <Image 
+          src={imgSrc} 
+          alt={label} 
+          fill 
+          className="object-contain drop-shadow-sm" 
+          sizes="(max-width: 768px) 30vw, 15vw" 
+          draggable={false}
+        />
+      </div>
+      <span className="font-display font-bold text-zen-gray text-sm sm:text-base md:text-lg leading-none capitalize">
+        {label}
+      </span>
+    </div>
   );
 }
 
@@ -121,9 +137,13 @@ export default function MemoriaDosBichinhos() {
       return;
     }
     transitionRef.current = setTimeout(() => {
-      setLevel((current) => current + 1);
-      setCards(createCards(level + 1));
-      setFlippedIds([]);
+      setCards((current) => current.map((c) => ({ ...c, faceUp: false, matched: false })));
+      
+      transitionRef.current = setTimeout(() => {
+        setLevel((current) => current + 1);
+        setCards(createCards(level + 1));
+        setFlippedIds([]);
+      }, 600);
     }, 1100);
   }, [complete, isChecking, level]);
 
@@ -162,22 +182,21 @@ export default function MemoriaDosBichinhos() {
   const restart = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (transitionRef.current) clearTimeout(transitionRef.current);
-    setLevel(1);
-    setCards(createCards(1));
+    setCards((current) => current.map((c) => ({ ...c, faceUp: false, matched: false })));
     setFlippedIds([]);
     setIsChecking(false);
 
+    transitionRef.current = setTimeout(() => {
+      setLevel(1);
+      setCards(createCards(1));
+    }, 600);
   };
 
   return (
     <div className="relative flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-zen-cream p-3 text-zen-gray sm:p-5 md:p-8" style={{ touchAction: "none" }}>
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 15% 12%, var(--color-zen-blue), transparent 35%), radial-gradient(circle at 85% 85%, var(--color-zen-pink), transparent 32%)" }} />
-      <div className="relative z-10 mb-3 shrink-0 text-center sm:mb-5">
-        <p className="text-sm font-bold">Nível {level} de 10 · {matchedPairs} de {pairCount} pares</p>
-        <p className="mt-1 text-xs opacity-70">Vire duas cartas para encontrar os bichinhos iguais.</p>
-      </div>
 
-      <div className={`relative z-10 grid w-full max-w-[min(92vw,38rem)] ${columns} gap-2 sm:gap-3 md:gap-4`} style={{ perspective: 1000 }}>
+      <div className={`relative z-10 grid w-full ${cards.length <= 4 ? "max-w-[min(92vw,26rem)]" : cards.length <= 8 ? "max-w-[min(92vw,42rem)]" : "max-w-[min(92vw,54rem)]"} ${columns} gap-2 sm:gap-3 md:gap-4`} style={{ perspective: 1000 }}>
         {cards.map((card) => {
           const faceUp = card.faceUp || card.matched;
           return (
