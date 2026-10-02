@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import TocarNasBolhas from "@/components/games/TocarNasBolhas";
+import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
 import { soundManager } from "@/lib/sounds";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import OJardimQueAcorda from "@/components/games/OJardimQueAcorda";
 import ArrastarFormas from "@/components/games/ArrastarFormas";
+import MemoriaDosBichinhos from "@/components/games/MemoriaDosBichinhos";
 
 interface GameViewProps {
   game: Game;
@@ -56,6 +58,8 @@ export default function GameView({ game, otherGames }: GameViewProps) {
     'tocar-nas-bolhas': <TocarNasBolhas />,
     'o-jardim-que-acorda': <OJardimQueAcorda />,
     'arrastar-formas': <ArrastarFormas />,
+    'memoria-dos-bichinhos': <MemoriaDosBichinhos />,
+    'cores-dos-bichinhos': <CoresDosBichinhos />,
   };
 
   return (
