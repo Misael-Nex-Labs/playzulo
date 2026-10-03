@@ -13,8 +13,20 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://playzulo.vercel.app"),
   title: "PlayZulo | Jogos educativos e calmos para crianças",
   description: "Jogos gratuitos de baixa estimulação para crianças de 1 a 5 anos. Sem anúncios, sem barulho, apenas diversão e aprendizado.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "PlayZulo | Jogos educativos e calmos para crianças",
+    description: "Jogos gratuitos de baixa estimulação para crianças de 1 a 5 anos, sem anúncios e sem estímulos agressivos.",
+    url: "/",
+    siteName: "PlayZulo",
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
