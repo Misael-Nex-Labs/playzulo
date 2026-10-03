@@ -49,5 +49,26 @@ export default async function GamePage({ params }: Props) {
     })
     .slice(0, 2);
 
-  return <GameView game={game} otherGames={otherGames} />;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: game.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <GameView game={game} otherGames={otherGames} />
+    </>
+  );
 }

@@ -222,9 +222,30 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                 </div>
               </div>
 
+              <div className="space-y-5 pt-8 border-t border-zen-gray/10">
+                <h2 className="text-2xl font-black flex items-center gap-2">
+                  <div className="w-2 h-8 rounded-full bg-zen-yellow" />
+                  Como Brincar
+                </h2>
+                <ol className="grid gap-3 text-sm md:text-base font-medium text-zen-gray/80">
+                  {[
+                    "Toque em jogar e deixe a criança explorar a tela no próprio ritmo.",
+                    "Observe junto, nomeando cores, formas ou bichinhos com frases curtas.",
+                    "Quando ela quiser parar, volte aos jogos sem cobrança de acertos ou pontuação.",
+                  ].map((step, index) => (
+                    <li key={step} className="flex gap-3 rounded-3xl bg-white/50 p-4 border border-white">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zen-cream text-xs font-black">
+                        {index + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
               {/* FAQ Section */}
               <div className="space-y-6 pt-8 border-t border-zen-gray/10">
-                <h3 className="text-xl font-black">Dúvidas Comuns</h3>
+                <h2 className="text-xl font-black">Dúvidas Comuns</h2>
                 <div className="grid gap-4">
                   {game.faq.map((item, i) => (
                     <div key={i} className="bg-white/50 p-6 rounded-3xl border border-white">
