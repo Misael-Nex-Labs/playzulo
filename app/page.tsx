@@ -50,12 +50,7 @@ const categories = [
 
 const featuredGames = games.slice(0, 3);
 
-import React, { useState, useEffect } from "react";
-
 export default function Home() {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
-
   return (
     <div className="min-h-screen bg-zen-bg text-zen-gray font-sans overflow-x-hidden">
       {/* Header */}
@@ -86,7 +81,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="pt-8 pb-16 md:py-24 flex flex-col items-center text-center gap-8">
           <motion.div
-            initial={isMounted ? { opacity: 0, y: 10 } : false}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="space-y-6"
@@ -126,7 +121,7 @@ export default function Home() {
               <motion.div
                 key={cat.slug}
                 variants={cardVariants}
-                initial={isMounted ? "initial" : "animate"}
+                initial="initial"
                 whileInView="animate"
                 viewport={{ amount: 0.1 }}
                 transition={{ delay: idx * 0.1 }}
@@ -159,7 +154,7 @@ export default function Home() {
               <motion.div
                 key={game.slug}
                 variants={cardVariants}
-                initial={isMounted ? "initial" : "animate"}
+                initial="initial"
                 whileInView="animate"
                 viewport={{ amount: 0.1 }}
                 transition={{ delay: 0.3 + idx * 0.1 }}

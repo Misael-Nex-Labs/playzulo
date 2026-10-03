@@ -39,10 +39,14 @@ export default async function GamePage({ params }: Props) {
     notFound();
   }
 
-  // Pegar 2 outros jogos aleatórios para a seção "Mais Jogos"
+  const currentIndex = games.findIndex((g) => g.slug === slug);
   const otherGames = games
     .filter((g) => g.slug !== slug)
-    .sort(() => Math.random() - 0.5)
+    .sort((a, b) => {
+      const distanceA = (games.findIndex((g) => g.slug === a.slug) - currentIndex + games.length) % games.length;
+      const distanceB = (games.findIndex((g) => g.slug === b.slug) - currentIndex + games.length) % games.length;
+      return distanceA - distanceB;
+    })
     .slice(0, 2);
 
   return <GameView game={game} otherGames={otherGames} />;

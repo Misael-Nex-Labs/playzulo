@@ -11,12 +11,12 @@ import {
   Brain,
   Play,
   Clock,
-  User,
   ShieldCheck,
   ChevronRight,
   Heart
 } from "lucide-react";
 import React, { useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import TocarNasBolhas from "@/components/games/TocarNasBolhas";
 import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
 import { soundManager } from "@/lib/sounds";
@@ -34,7 +34,7 @@ interface GameViewProps {
 }
 
 // Mapeamento de ícones do games.ts para componentes Lucide
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   'MousePointer2': MousePointer2,
   'Sprout': Sprout,
   'Shapes': Shapes,
@@ -44,11 +44,6 @@ const iconMap: Record<string, any> = {
 
 export default function GameView({ game, otherGames }: GameViewProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
-  
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const GameIcon = iconMap[game.icon] || Gamepad2;
   const router = useRouter();
@@ -90,7 +85,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
 
       <main className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div 
-          initial={isMounted ? { opacity: 0, y: 15 } : false}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-8"
@@ -193,7 +188,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                         setIsPlaying(true);
                         try {
                           soundManager.unlock();
-                        } catch (e) {}
+                        } catch {}
                       }}
                     >
                       <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-zen-gray transition-colors">

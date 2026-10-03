@@ -126,6 +126,7 @@ export default function TocarNasBolhas() {
       className="relative w-full h-full bg-zen-bg overflow-hidden cursor-pointer rounded-[2rem]"
       style={{ touchAction: "none" }}
     >
+      <p className="sr-only" aria-live="polite">Bolhas estouradas: {poppedCount}</p>
       {/* Camada de Partículas */}
       <AnimatePresence>
         {particles.map((p) => (

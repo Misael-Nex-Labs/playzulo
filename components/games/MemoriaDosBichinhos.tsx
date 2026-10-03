@@ -43,17 +43,6 @@ const ANIMAL_LABELS: Record<Animal, string> = {
   urso: "Urso",
   gato: "Gato",
 };
-const ANIMAL_COLORS: Record<Animal, string> = {
-  elefante: "var(--color-zen-blue)",
-  leao: "var(--color-zen-yellow)",
-  girafa: "var(--color-zen-pink)",
-  passarinho: "var(--color-zen-green)",
-  coelho: "var(--color-zen-cream)",
-  raposa: "#f3c8a8",
-  urso: "#d8bd91",
-  gato: "#c9d8d6",
-};
-
 function shuffle<T>(items: T[]) {
   return [...items].sort(() => Math.random() - 0.5);
 }

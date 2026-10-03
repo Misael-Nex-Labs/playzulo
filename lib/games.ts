@@ -1,5 +1,3 @@
-import { MousePointer2, Sprout, Shapes, Palette, Brain } from "lucide-react";
-
 export interface Game {
   id: string;
   slug: string;

@@ -48,14 +48,14 @@ export default function SobrePage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-zen-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
             <h2 className="text-3xl font-black font-display flex items-center gap-3">
               <Sparkles className="text-zen-blue" size={28} /> 
-              Por que "Baixa Estimulação"?
+              Por que “Baixa Estimulação”?
             </h2>
             <div className="text-lg opacity-80 space-y-4 leading-relaxed font-medium">
               <p>
                 A internet está cheia de jogos frenéticos, com cores neon piscantes, sirenes e uma chuva de estímulos desenhados para viciar a mente infantil. Isso pode causar irritabilidade e sobrecarga sensorial em bebês e crianças pequenas (1 a 5 anos).
               </p>
               <p>
-                O PlayZulo vai na direção oposta. Nós adotamos o "Manifesto Zen": paletas de cores pastéis, sons suaves de madeira ou sinos, e interações lentas. A ideia não é prender a criança por horas, mas sim oferecer alguns minutos de aprendizado de causa-e-efeito com total tranquilidade.
+                O PlayZulo vai na direção oposta. Nós adotamos o “Manifesto Zen”: paletas de cores pastéis, sons suaves de madeira ou sinos, e interações lentas. A ideia não é prender a criança por horas, mas sim oferecer alguns minutos de aprendizado de causa-e-efeito com total tranquilidade.
               </p>
             </div>
           </section>
@@ -72,7 +72,7 @@ export default function SobrePage() {
               </p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
                 <li><strong>Livre de Interrupções Intrusivas:</strong> Odiamos pop-ups e sirenes tanto quanto você. Nosso ambiente é pensado para não ter botões enganosos, garantindo que cliques acidentais não tirem seu filho do jogo abruptamente.</li>
-                <li><strong>Zero Pressão:</strong> Não existem "vidas", "game over", contadores de tempo ou placares competitivos. A criança joga no próprio ritmo.</li>
+                <li><strong>Zero Pressão:</strong> Não existem “vidas”, “game over”, contadores de tempo ou placares competitivos. A criança joga no próprio ritmo.</li>
                 <li><strong>100% Gratuito:</strong> Queremos que qualquer criança possa ter acesso a um ambiente digital saudável e seguro para brincar.</li>
               </ul>
             </div>
@@ -86,7 +86,7 @@ export default function SobrePage() {
             </h2>
             <div className="text-lg opacity-80 space-y-4 leading-relaxed font-medium">
               <p>
-                Cada jogo é desenhado com um propósito simples. Seja entender que "tocar na tela estoura a bolha" (causa e efeito), seja aprender as cores básicas ou associar formas.
+                Cada jogo é desenhado com um propósito simples. Seja entender que “tocar na tela estoura a bolha” (causa e efeito), seja aprender as cores básicas ou associar formas.
               </p>
               <p>
                 Nosso maior objetivo é que, ao desligar a tela, a criança volte para o mundo real calma e curiosa, pronta para brincar com seus brinquedos físicos.

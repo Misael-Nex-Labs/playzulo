@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { soundManager } from "@/lib/sounds";
 
 type ShapeKind = "circle" | "square" | "triangle" | "star" | "diamond" | "plus" | "egg" | "pentagon" | "blob" | "flower" | "star4";
@@ -65,7 +65,6 @@ const getStartPosition = (index: number, total: number) => {
   return { left: lefts[index], top: tops[index] };
 };
 
-const SHAPE_SIZE = 96;
 
 function getShapePath(kind: ShapeKind) {
   switch (kind) {
