@@ -177,8 +177,8 @@ function DraggableShape({ shape, onMatch, areaRef }: DraggableShapeProps) {
         event.stopPropagation();
         handleDragEnd();
       }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       style={{ touchAction: "none", zIndex: 30 }}
       aria-label={`Arraste o ${shape.label}`}
       role="button"

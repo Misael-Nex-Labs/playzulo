@@ -19,7 +19,7 @@ export default function GamesPage() {
           href="/" 
           className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group"
         >
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-[1.02] transition-transform duration-500">
             <ArrowLeft size={16} />
           </div>
           Início

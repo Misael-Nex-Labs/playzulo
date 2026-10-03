@@ -128,10 +128,10 @@ export default function Home() {
               >
                 <Link 
                   href={`/categorias/${cat.slug}`}
-                  className="group flex h-full flex-col items-center justify-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all hover:translate-y-[-4px] shadow-sm"
+                  className="group flex h-full flex-col items-center justify-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all duration-500 hover:translate-y-[-2px] shadow-sm"
                 >
                   <div 
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${cat.color}`}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02] ${cat.color}`}
                   >
                     <cat.icon size={32} className="text-zen-gray" />
                   </div>
@@ -165,7 +165,7 @@ export default function Home() {
                   <img 
                     src={game.image} 
                     alt={game.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold">
                     {game.ageRange}

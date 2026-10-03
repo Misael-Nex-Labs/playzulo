@@ -76,7 +76,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
           onClick={() => router.back()}
           className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-[1.02] transition-transform duration-500">
             <ArrowLeft size={16} />
           </div>
           Voltar
@@ -165,7 +165,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                         backgroundColor: `var(--${game.color})`,
                       }}
                     >
-                      <div className="absolute inset-0 rounded-full border-4 border-white/40 animate-ping opacity-20" />
+                      <div className="absolute inset-0 rounded-full border-4 border-white/40 opacity-20" />
                       <GameIcon className="w-10 h-10 md:w-20 md:h-20 text-white drop-shadow-md" />
                     </motion.div>
 
@@ -176,8 +176,8 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                     </div>
 
                     <motion.button 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       className="relative z-50 text-white px-6 md:px-12 py-3 md:py-6 rounded-full text-base md:text-2xl font-black flex items-center gap-2 md:gap-4 shadow-2xl transition-all cursor-pointer border-b-4 md:border-b-8 group"
                       style={{ 
                         backgroundColor: `var(--${game.color})`,
@@ -252,7 +252,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                           alt={other.title} 
                           fill 
                           sizes="64px"
-                          className="object-cover group-hover:scale-110 transition-transform" 
+                          className="object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                         />
                       </div>
                       <div>

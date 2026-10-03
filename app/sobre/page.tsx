@@ -16,7 +16,7 @@ export default function SobrePage() {
           href="/" 
           className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group"
         >
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-[1.02] transition-transform duration-500">
             <ArrowLeft size={16} />
           </div>
           Início
@@ -116,7 +116,7 @@ export default function SobrePage() {
         <div className="text-center pt-12">
           <Link 
             href="/jogos" 
-            className="inline-flex items-center gap-3 px-10 py-5 bg-zen-green text-white rounded-full font-black text-xl hover:scale-105 transition-transform shadow-lg border-b-4 border-zen-green-dark"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-zen-green text-white rounded-full font-black text-xl hover:scale-[1.02] transition-transform duration-500 shadow-lg border-b-4 border-zen-green-dark"
           >
             Conhecer os Jogos <ArrowLeft size={20} className="rotate-180" />
           </Link>

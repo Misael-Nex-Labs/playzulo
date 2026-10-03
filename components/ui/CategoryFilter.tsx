@@ -30,7 +30,7 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
             onClick={() => setSelected(cat)}
             className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
               selected === cat
-                ? "bg-zen-green text-white shadow-md scale-105"
+                ? "bg-zen-green text-white shadow-md scale-[1.02]"
                 : "bg-white text-zen-gray/60 hover:bg-zen-cream hover:text-zen-gray shadow-sm border-2 border-transparent hover:border-zen-green/20"
             }`}
           >
@@ -73,7 +73,7 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
                     alt={game.title} 
                     fill 
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-zen-gray shadow-sm">
                     {game.ageRange}
