@@ -109,12 +109,14 @@ export default function GameView({ game, otherGames }: GameViewProps) {
             </div>
             
             <div className="hidden md:flex items-center gap-4 bg-white/50 backdrop-blur-sm p-4 rounded-3xl border border-white">
-              <div className="flex -space-x-2">
-                {[1,2,3].map(i => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-zen-cream flex items-center justify-center text-[10px]">👶</div>
+              <div className="flex -space-x-2" aria-hidden="true">
+                {[ShieldCheck, Clock, Heart].map((StatusIcon, i) => (
+                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-zen-cream flex items-center justify-center text-zen-gray/70">
+                    <StatusIcon size={14} />
+                  </div>
                 ))}
               </div>
-              <p className="text-xs font-bold opacity-60">+1.2k crianças jogaram hoje</p>
+              <p className="text-xs font-bold opacity-60">Sem anúncios, sem pressa e grátis</p>
             </div>
           </header>
 
