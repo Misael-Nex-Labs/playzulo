@@ -161,11 +161,12 @@ export default function Home() {
                 className="group bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-white hover:border-zen-cream"
               >
                 <div className="aspect-video relative overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={game.image} 
+                  <Image
+                    src={game.image}
                     alt={game.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold">
                     {game.ageRange}
@@ -174,7 +175,7 @@ export default function Home() {
                 <div className="p-8 space-y-4">
                   <h4 className="text-2xl font-extrabold text-zen-gray font-display">{game.title}</h4>
                   <p className="text-sm opacity-80 leading-relaxed">
-                    Um jogo calmo e interativo projetado especialmente para diversão sem estímulo exagerado.
+                    {game.shortDescription}
                   </p>
                   <Link 
                     href={`/jogos/${game.slug}`}
