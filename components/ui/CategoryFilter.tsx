@@ -11,14 +11,25 @@ interface CategoryFilterProps {
   games: Game[];
 }
 
-const CATEGORIES = ["Todos", "Tocar", "Arrastar", "Cores", "Formas", "Memória"];
+type CategoryOption = {
+  label: string;
+  matches: (game: Game) => boolean;
+};
+
+const CATEGORIES: CategoryOption[] = [
+  { label: "Todos", matches: () => true },
+  { label: "Tocar", matches: (game: Game) => game.category === "tocar" },
+  { label: "Arrastar", matches: (game: Game) => game.slug === "arrastar-formas" },
+  { label: "Cores", matches: (game: Game) => game.category === "cores" },
+  { label: "Formas", matches: (game: Game) => game.category === "formas" },
+  { label: "Memória", matches: (game: Game) => game.category === "memoria" },
+];
 
 export default function CategoryFilter({ games }: CategoryFilterProps) {
   const [selected, setSelected] = useState<string>("Todos");
 
-  const filteredGames = selected === "Todos"
-    ? games
-    : games.filter((g) => g.category.toLowerCase() === selected.toLowerCase());
+  const selectedCategory = CATEGORIES.find((category) => category.label === selected) ?? CATEGORIES[0];
+  const filteredGames = games.filter(selectedCategory.matches);
 
   return (
     <div className="space-y-12">
@@ -26,15 +37,17 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
       <div className="flex flex-wrap items-center justify-center gap-3">
         {CATEGORIES.map((cat) => (
           <button
-            key={cat}
-            onClick={() => setSelected(cat)}
+            key={cat.label}
+            type="button"
+            aria-pressed={selected === cat.label}
+            onClick={() => setSelected(cat.label)}
             className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
-              selected === cat
+              selected === cat.label
                 ? "bg-zen-green text-white shadow-md scale-[1.02]"
                 : "bg-white text-zen-gray/60 hover:bg-zen-cream hover:text-zen-gray shadow-sm border-2 border-transparent hover:border-zen-green/20"
             }`}
           >
-            {cat}
+            {cat.label}
           </button>
         ))}
       </div>
@@ -49,9 +62,9 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
             <motion.div
               layout
               key={game.slug}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.98, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+              exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.4 } }}
               transition={{ 
                 duration: 0.4, 
                 delay: index * 0.1,
@@ -63,7 +76,7 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
             >
               <Link 
                 href={`/jogos/${game.slug}`}
-                className="flex flex-col h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group hover:-translate-y-2 border-4 border-transparent hover:border-white"
+                className="flex flex-col h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 group hover:-translate-y-0.5 border-4 border-transparent hover:border-white"
                 style={{ backgroundColor: `var(--${game.color})` }}
               >
                 {/* Imagem do Card */}
