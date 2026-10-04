@@ -19,14 +19,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!game) return {};
 
+  const gameUrl = `/jogos/${game.slug}`;
+
   return {
-    title: `${game.seo.title}`,
+    title: game.seo.title,
     description: game.seo.description,
     keywords: game.seo.keywords,
+    alternates: {
+      canonical: gameUrl,
+    },
     openGraph: {
       title: game.seo.title,
       description: game.seo.description,
+      url: gameUrl,
       type: "website",
+      images: [
+        {
+          url: game.image,
+          alt: `${game.title} no PlayZulo`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: game.seo.title,
+      description: game.seo.description,
+      images: [game.image],
     },
   };
 }
