@@ -5,14 +5,44 @@ import CategoryFilter from "@/components/ui/CategoryFilter";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+const siteUrl = "https://playzulo.vercel.app";
+
 export const metadata: Metadata = {
   title: "Jogos Educativos Gratuitos para Crianças | PlayZulo",
   description: "Explore nossa coleção de jogos de baixa estimulação. Seguros, educativos e desenhados para bebês e crianças de 1 a 5 anos.",
+  alternates: {
+    canonical: "/jogos",
+  },
+  openGraph: {
+    title: "Jogos Educativos Gratuitos para Crianças | PlayZulo",
+    description: "Explore jogos infantis gratuitos, sem anúncios e com baixa estimulação para crianças de 1 a 5 anos.",
+    url: "/jogos",
+    type: "website",
+  },
+};
+
+const gamesItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Jogos educativos gratuitos do PlayZulo",
+  description: "Coleção de jogos infantis gratuitos, seguros e de baixa estimulação.",
+  itemListElement: games.map((game, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `${siteUrl}/jogos/${game.slug}`,
+    name: game.title,
+    description: game.shortDescription,
+  })),
 };
 
 export default function GamesPage() {
   return (
-    <div className="min-h-screen bg-zen-bg text-zen-gray font-sans pb-24">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gamesItemListJsonLd) }}
+      />
+      <div className="min-h-screen bg-zen-bg text-zen-gray font-sans pb-24">
       {/* Navbar Minimalista */}
       <nav className="w-full px-6 py-8 flex items-center justify-between max-w-6xl mx-auto">
         <Link 
@@ -50,13 +80,14 @@ export default function GamesPage() {
 
         {/* Banner "Em Breve" */}
         <section className="bg-zen-pink/10 border-2 border-zen-pink/20 rounded-[3rem] p-8 md:p-12 text-center space-y-4">
-          <h3 className="text-2xl font-black font-display text-zen-gray">Novidades a caminho! 🚀</h3>
+          <h3 className="text-2xl font-black font-display text-zen-gray">Novas experiências estão chegando</h3>
           <p className="text-lg font-medium opacity-80 max-w-2xl mx-auto">
-            Em breve lançaremos uma nova coleção de jogos focados em <strong>alfabetização, números, inglês e vocabulário</strong>. Fique de olho!
+            A coleção vai crescer aos poucos com jogos de <strong>alfabetização, números, inglês e vocabulário</strong>, sempre no ritmo calmo do PlayZulo.
           </p>
         </section>
 
       </main>
     </div>
+    </>
   );
 }
