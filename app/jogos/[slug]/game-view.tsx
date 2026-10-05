@@ -48,6 +48,14 @@ export default function GameView({ game, otherGames }: GameViewProps) {
   const GameIcon = iconMap[game.icon] || Gamepad2;
   const router = useRouter();
 
+  const startGame = () => {
+    if (isPlaying) return;
+    setIsPlaying(true);
+    try {
+      soundManager.unlock();
+    } catch {}
+  };
+
   // Mapa de componentes de jogo reais
   const gameComponents: Record<string, React.ReactNode> = {
     'tocar-nas-bolhas': <TocarNasBolhas />,
@@ -178,25 +186,26 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                     </div>
 
                     <motion.button 
+                      type="button"
+                      aria-label={`Começar o jogo ${game.title}`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="relative z-50 text-white px-6 md:px-12 py-3 md:py-6 rounded-full text-base md:text-2xl font-black flex items-center gap-2 md:gap-4 shadow-2xl transition-all cursor-pointer border-b-4 md:border-b-8 group"
+                      className="relative z-50 text-zen-gray px-6 md:px-12 py-3 md:py-6 rounded-full text-base md:text-2xl font-black flex items-center gap-2 md:gap-4 shadow-2xl transition-all cursor-pointer border-b-4 md:border-b-8 group focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-zen-green/50"
                       style={{ 
                         backgroundColor: `var(--${game.color})`,
                         borderColor: `var(--${game.color}-dark)`,
                         touchAction: "manipulation"
                       }}
-                      onTap={() => {
-                        setIsPlaying(true);
-                        try {
-                          soundManager.unlock();
-                        } catch {}
+                      onPointerDown={(event) => {
+                        event.preventDefault();
+                        startGame();
                       }}
+                      onClick={startGame}
                     >
-                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-zen-gray transition-colors">
+                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/35 flex items-center justify-center group-hover:bg-white transition-colors duration-500">
                         <Play className="w-3 h-3 md:w-6 md:h-6" fill="currentColor" />
                       </div>
-                      <span className="drop-shadow-sm">JOGAR AGORA</span>
+                      <span>JOGAR AGORA</span>
                     </motion.button>
                   </div>
                   
