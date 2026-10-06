@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import { notFound } from "next/navigation";
 
+const siteUrl = "https://playzulo.vercel.app";
+
 const categories = [
   {
     slug: "tocar-na-tela",
@@ -65,6 +67,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${category.title} grátis | PlayZulo`,
     description: `${category.description} Jogos educativos gratuitos, seguros e de baixa estimulação para crianças de 1 a 5 anos.`,
+    alternates: {
+      canonical: `/categorias/${category.slug}`,
+    },
+    openGraph: {
+      title: `${category.title} grátis | PlayZulo`,
+      description: category.description,
+      url: `/categorias/${category.slug}`,
+      type: "website",
+    },
   };
 }
 
@@ -80,8 +91,57 @@ export default async function CategoryPage({ params }: Props) {
     .map((gameSlug) => games.find((game) => game.slug === gameSlug))
     .filter((game): game is (typeof games)[number] => Boolean(game));
 
+  const categoryUrl = `${siteUrl}/categorias/${category.slug}`;
+  const categoryItemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${category.title} do PlayZulo`,
+    description: category.description,
+    url: categoryUrl,
+    itemListElement: categoryGames.map((game, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${siteUrl}/jogos/${game.slug}`,
+      name: game.title,
+      description: game.shortDescription,
+    })),
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Início",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Categorias",
+        item: `${siteUrl}/jogos`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: category.title,
+        item: categoryUrl,
+      },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-zen-bg text-zen-gray font-sans pb-24">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryItemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <div className="min-h-screen bg-zen-bg text-zen-gray font-sans pb-24">
       <nav className="w-full px-6 py-8 flex items-center justify-between max-w-6xl mx-auto">
         <Link
           href="/"
@@ -157,5 +217,6 @@ export default async function CategoryPage({ params }: Props) {
         </section>
       </main>
     </div>
+    </>
   );
 }
