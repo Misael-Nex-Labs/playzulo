@@ -101,7 +101,7 @@ export default function Home() {
           >
             <Link 
               href="/jogos" 
-              className="bg-zen-green text-zen-bg px-10 py-5 rounded-full text-xl font-bold flex items-center gap-3 shadow-md hover:shadow-lg hover:text-white transition-all border-b-4 border-zen-green-dark"
+              className="bg-zen-green text-zen-gray px-10 py-5 rounded-full text-xl font-bold flex items-center gap-3 shadow-md hover:shadow-lg hover:bg-zen-green-dark transition-all duration-500 border-b-4 border-zen-green-dark"
             >
               Ver todos os jogos
               <ArrowRight size={24} />

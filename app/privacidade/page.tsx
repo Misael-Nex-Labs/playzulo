@@ -79,7 +79,7 @@ export default function PrivacidadePage() {
           </p>
           <Link
             href="/jogos"
-            className="inline-flex items-center justify-center rounded-full bg-zen-green px-8 py-4 font-black text-white transition-colors duration-500 hover:bg-zen-green-dark"
+            className="inline-flex items-center justify-center rounded-full bg-zen-green px-8 py-4 font-black text-zen-gray transition-colors duration-500 hover:bg-zen-green-dark"
           >
             Ver jogos seguros
           </Link>

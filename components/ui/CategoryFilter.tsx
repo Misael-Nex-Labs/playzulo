@@ -43,7 +43,7 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
             onClick={() => setSelected(cat.label)}
             className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
               selected === cat.label
-                ? "bg-zen-green text-white shadow-md scale-[1.02]"
+                ? "bg-zen-green text-zen-gray shadow-md scale-[1.02]"
                 : "bg-white text-zen-gray/60 hover:bg-zen-cream hover:text-zen-gray shadow-sm border-2 border-transparent hover:border-zen-green/20"
             }`}
           >
@@ -103,7 +103,7 @@ export default function CategoryFilter({ games }: CategoryFilterProps) {
                   </p>
                   
                   {/* Botão de Ação Suave */}
-                  <div className="flex items-center gap-3 text-sm font-black uppercase tracking-wider text-white bg-black/10 px-6 py-4 rounded-full group-hover:bg-white group-hover:text-zen-gray transition-colors self-start shadow-sm group-hover:shadow-md">
+                  <div className="flex items-center gap-3 text-sm font-black uppercase tracking-wider text-zen-gray bg-white/50 px-6 py-4 rounded-full group-hover:bg-white transition-colors self-start shadow-sm group-hover:shadow-md">
                     <Play size={16} fill="currentColor" /> Jogar
                   </div>
                 </div>

@@ -116,7 +116,7 @@ export default function SobrePage() {
         <div className="text-center pt-12">
           <Link 
             href="/jogos" 
-            className="inline-flex items-center gap-3 px-10 py-5 bg-zen-green text-white rounded-full font-black text-xl hover:scale-[1.02] transition-transform duration-500 shadow-lg border-b-4 border-zen-green-dark"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-zen-green text-zen-gray rounded-full font-black text-xl hover:scale-[1.02] transition-transform duration-500 shadow-lg border-b-4 border-zen-green-dark"
           >
             Conhecer os Jogos <ArrowLeft size={20} className="rotate-180" />
           </Link>

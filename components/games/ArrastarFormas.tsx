@@ -337,7 +337,7 @@ export default function ArrastarFormas() {
         aria-live="polite"
       >
         <div className="rounded-full bg-zen-green px-6 py-2 shadow-sm">
-          <p className="text-lg font-bold text-white">Parabéns!</p>
+          <p className="text-lg font-bold text-zen-gray">Parabéns!</p>
         </div>
       </motion.div>
     </div>

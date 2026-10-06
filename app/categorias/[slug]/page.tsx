@@ -194,7 +194,7 @@ export default async function CategoryPage({ params }: Props) {
                 <p className="font-medium opacity-80 leading-relaxed">{game.shortDescription}</p>
                 <Link
                   href={`/jogos/${game.slug}`}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-zen-green px-6 py-4 font-black text-white transition-colors duration-500 hover:bg-zen-green-dark"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-zen-green px-6 py-4 font-black text-zen-gray transition-colors duration-500 hover:bg-zen-green-dark"
                 >
                   Jogar agora <Gamepad2 size={20} />
                 </Link>

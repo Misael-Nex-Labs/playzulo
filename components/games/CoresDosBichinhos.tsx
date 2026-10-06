@@ -144,11 +144,11 @@ export default function CoresDosBichinhos() {
         })}
       </div>
       <nav className="relative z-10 mt-3 flex items-center justify-center gap-5" aria-label="Páginas de bichinhos">
-        <motion.button type="button" aria-label="Página anterior" className="flex h-11 w-14 items-center justify-center rounded-full bg-zen-green text-white shadow-sm cursor-pointer" whileHover={{ y: -2, scale: 1.02, filter: "brightness(0.95)" }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.3, ease: "easeOut" }} onPointerDown={(event) => handlePointer(event, () => changePage(page - 1))} onTouchStart={(event) => handleTouch(event, () => changePage(page - 1))}>
+        <motion.button type="button" aria-label="Página anterior" className="flex h-11 w-14 items-center justify-center rounded-full bg-zen-green text-zen-gray shadow-sm cursor-pointer" whileHover={{ y: -2, scale: 1.02, filter: "brightness(0.95)" }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.3, ease: "easeOut" }} onPointerDown={(event) => handlePointer(event, () => changePage(page - 1))} onTouchStart={(event) => handleTouch(event, () => changePage(page - 1))}>
           <ChevronLeft size={24} strokeWidth={2.5} />
         </motion.button>
         <span className="text-sm text-zen-gray/70 font-medium" aria-live="polite">{page + 1} de {PAGES.length}</span>
-        <motion.button type="button" aria-label="Próxima página" className="flex h-11 w-14 items-center justify-center rounded-full bg-zen-green text-white shadow-sm cursor-pointer" whileHover={{ y: -2, scale: 1.02, filter: "brightness(0.95)" }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.3, ease: "easeOut" }} onPointerDown={(event) => handlePointer(event, () => changePage(page + 1))} onTouchStart={(event) => handleTouch(event, () => changePage(page + 1))}>
+        <motion.button type="button" aria-label="Próxima página" className="flex h-11 w-14 items-center justify-center rounded-full bg-zen-green text-zen-gray shadow-sm cursor-pointer" whileHover={{ y: -2, scale: 1.02, filter: "brightness(0.95)" }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.3, ease: "easeOut" }} onPointerDown={(event) => handlePointer(event, () => changePage(page + 1))} onTouchStart={(event) => handleTouch(event, () => changePage(page + 1))}>
           <ChevronRight size={24} strokeWidth={2.5} />
         </motion.button>
       </nav>
