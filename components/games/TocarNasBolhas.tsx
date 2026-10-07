@@ -28,10 +28,12 @@ const COLORS = [
   "var(--color-zen-cream)"
 ];
 
+const BUBBLE_SPAWN_DELAY = 2200;
+const MAX_BUBBLES_ON_SCREEN = 5;
+
 export default function TocarNasBolhas() {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [spawnInterval, setSpawnInterval] = useState(2000);
   const [poppedCount, setPoppedCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const nextId = useRef(0);
@@ -42,8 +44,7 @@ export default function TocarNasBolhas() {
 
     const { width, height } = containerRef.current.getBoundingClientRect();
     
-    // Tamanhos mais variados para dar um aspecto mais natural
-    const size = Math.random() * 50 + 80; 
+    const size = Math.random() * 36 + 74; 
     
     // Margem reduzida para espalhar mais as bolhas
     const safePadding = width < 600 ? 15 : 40;
@@ -64,29 +65,18 @@ export default function TocarNasBolhas() {
 
     setBubbles((prev) => {
       const updated = [...prev, newBubble];
-      // Aumenta o limite de bolhas simultâneas conforme a velocidade aumenta
-      const maxBubbles = spawnInterval < 1000 ? 10 : 6;
-      return updated.length > maxBubbles ? updated.slice(1) : updated;
+      return updated.length > MAX_BUBBLES_ON_SCREEN ? updated.slice(1) : updated;
     });
-  }, [spawnInterval]);
+  }, []);
 
-  // Agendador dinâmico de bolhas com aleatoriedade
+  // Ritmo constante e previsível para manter a experiência low-stim.
   useEffect(() => {
-    // Adiciona uma variação de até 40% para o tempo ser imprevisível
-    const jitter = (Math.random() * 0.8) + 0.6; // Entre 60% e 140% do intervalo
-    const nextDelay = spawnInterval * jitter;
-
-    const timer = setTimeout(() => {
+    const timer = window.setTimeout(() => {
       spawnBubble();
-      
-      // 20% de chance de nascer uma segunda bolha logo em seguida (efeito surpresa)
-      if (Math.random() > 0.8) {
-        setTimeout(spawnBubble, 250);
-      }
-    }, nextDelay);
+    }, BUBBLE_SPAWN_DELAY);
     
-    return () => clearTimeout(timer);
-  }, [bubbles, spawnInterval, spawnBubble]);
+    return () => window.clearTimeout(timer);
+  }, [bubbles.length, spawnBubble]);
 
   const popBubble = (bubble: Bubble) => {
     soundManager.playPop();
@@ -95,20 +85,18 @@ export default function TocarNasBolhas() {
       navigator.vibrate(10);
     }
 
-    // Acelera o jogo conforme a criança joga
     setPoppedCount(prev => prev + 1);
-    setSpawnInterval(prev => Math.max(600, prev - 50));
 
     // Criar partículas exatamente no centro da bolha
     const centerX = bubble.x + bubble.size / 2;
     const centerY = bubble.y + bubble.size / 2;
 
-    const newParticles: Particle[] = Array.from({ length: 8 }).map(() => ({
+    const newParticles: Particle[] = Array.from({ length: 6 }).map(() => ({
       id: nextParticleId.current++,
       x: centerX,
       y: centerY,
-      vx: (Math.random() - 0.5) * 120,
-      vy: (Math.random() - 0.5) * 120,
+      vx: (Math.random() - 0.5) * 85,
+      vy: (Math.random() - 0.5) * 85,
       color: bubble.color,
     }));
 
@@ -117,7 +105,7 @@ export default function TocarNasBolhas() {
 
     setTimeout(() => {
       setParticles((prev) => prev.filter((p) => !newParticles.find(np => np.id === p.id)));
-    }, 1000);
+    }, 1200);
   };
 
   return (
@@ -139,7 +127,7 @@ export default function TocarNasBolhas() {
               scale: 0, 
               opacity: 0 
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute w-3 h-3 rounded-full pointer-events-none z-30"
             style={{ 
               left: p.x, 
