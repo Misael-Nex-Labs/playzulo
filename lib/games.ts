@@ -119,7 +119,7 @@ export const games: Game[] = [
       keywords: ['jogo de memória', 'memória para crianças', 'desenvolvimento cognitivo', 'jogos zen']
     },
     faq: [
-      { question: 'Quantas cartas tem o jogo?', answer: 'Começa com 4 cartas e aumenta gradualmente até 8.' }
+      { question: 'Quantas cartas tem o jogo?', answer: 'Começa com 4 cartas e aumenta gradualmente até 12, mantendo o ritmo calmo.' }
     ]
   }
 ];
