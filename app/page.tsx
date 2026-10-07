@@ -50,12 +50,7 @@ const categories = [
 
 const featuredGames = games.slice(0, 3);
 
-import React, { useState, useEffect } from "react";
-
 export default function Home() {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
-
   return (
     <div className="min-h-screen bg-zen-bg text-zen-gray font-sans overflow-x-hidden">
       {/* Header */}
@@ -86,7 +81,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="pt-8 pb-16 md:py-24 flex flex-col items-center text-center gap-8">
           <motion.div
-            initial={isMounted ? { opacity: 0, y: 10 } : false}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="space-y-6"
@@ -106,7 +101,7 @@ export default function Home() {
           >
             <Link 
               href="/jogos" 
-              className="bg-zen-green text-zen-bg px-10 py-5 rounded-full text-xl font-bold flex items-center gap-3 shadow-md hover:shadow-lg hover:text-white transition-all border-b-4 border-zen-green-dark"
+              className="bg-zen-green text-zen-gray px-10 py-5 rounded-full text-xl font-bold flex items-center gap-3 shadow-md hover:shadow-lg hover:bg-zen-green-dark transition-all duration-500 border-b-4 border-zen-green-dark"
             >
               Ver todos os jogos
               <ArrowRight size={24} />
@@ -126,17 +121,17 @@ export default function Home() {
               <motion.div
                 key={cat.slug}
                 variants={cardVariants}
-                initial={isMounted ? "initial" : "animate"}
+                initial="initial"
                 whileInView="animate"
                 viewport={{ amount: 0.1 }}
                 transition={{ delay: idx * 0.1 }}
               >
                 <Link 
                   href={`/categorias/${cat.slug}`}
-                  className="group flex h-full flex-col items-center justify-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all hover:translate-y-[-4px] shadow-sm"
+                  className="group flex h-full flex-col items-center justify-center p-6 rounded-[2.5rem] bg-white border-2 border-transparent hover:border-zen-green transition-all duration-500 hover:translate-y-[-2px] shadow-sm"
                 >
                   <div 
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${cat.color}`}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02] ${cat.color}`}
                   >
                     <cat.icon size={32} className="text-zen-gray" />
                   </div>
@@ -159,18 +154,19 @@ export default function Home() {
               <motion.div
                 key={game.slug}
                 variants={cardVariants}
-                initial={isMounted ? "initial" : "animate"}
+                initial="initial"
                 whileInView="animate"
                 viewport={{ amount: 0.1 }}
                 transition={{ delay: 0.3 + idx * 0.1 }}
                 className="group bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-white hover:border-zen-cream"
               >
                 <div className="aspect-video relative overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={game.image} 
+                  <Image
+                    src={game.image}
                     alt={game.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold">
                     {game.ageRange}
@@ -179,7 +175,7 @@ export default function Home() {
                 <div className="p-8 space-y-4">
                   <h4 className="text-2xl font-extrabold text-zen-gray font-display">{game.title}</h4>
                   <p className="text-sm opacity-80 leading-relaxed">
-                    Um jogo calmo e interativo projetado especialmente para diversão sem estímulo exagerado.
+                    {game.shortDescription}
                   </p>
                   <Link 
                     href={`/jogos/${game.slug}`}

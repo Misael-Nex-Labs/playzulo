@@ -14,7 +14,7 @@ class SoundManager {
         volume: 0.7,
         preload: true,
         onload: () => console.log("✅ Seu arquivo pop.mp3 foi carregado com sucesso!"),
-        onloaderror: (id, err) => {
+        onloaderror: () => {
           console.warn("📂 Aguardando o arquivo /public/sounds/pop.mp3 ser adicionado...");
         }
       });
@@ -47,7 +47,7 @@ class SoundManager {
       const silence = new Howl({
         src: ['data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA='],
         onplay: () => console.log("🔊 Áudio destravado!"),
-        onplayerror: (id, err) => console.warn("Erro no play de destrave:", err)
+        onplayerror: () => console.warn("Erro no play de destrave")
       });
       silence.play();
     } catch (e) {

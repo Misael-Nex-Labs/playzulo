@@ -11,12 +11,12 @@ import {
   Brain,
   Play,
   Clock,
-  User,
   ShieldCheck,
   ChevronRight,
   Heart
 } from "lucide-react";
 import React, { useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import TocarNasBolhas from "@/components/games/TocarNasBolhas";
 import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
 import { soundManager } from "@/lib/sounds";
@@ -34,7 +34,7 @@ interface GameViewProps {
 }
 
 // Mapeamento de ícones do games.ts para componentes Lucide
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   'MousePointer2': MousePointer2,
   'Sprout': Sprout,
   'Shapes': Shapes,
@@ -44,14 +44,17 @@ const iconMap: Record<string, any> = {
 
 export default function GameView({ game, otherGames }: GameViewProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
-  
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const GameIcon = iconMap[game.icon] || Gamepad2;
   const router = useRouter();
+
+  const startGame = () => {
+    if (isPlaying) return;
+    setIsPlaying(true);
+    try {
+      soundManager.unlock();
+    } catch {}
+  };
 
   // Mapa de componentes de jogo reais
   const gameComponents: Record<string, React.ReactNode> = {
@@ -81,7 +84,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
           onClick={() => router.back()}
           className="inline-flex items-center gap-2 text-sm font-bold text-zen-gray/60 hover:text-zen-gray transition-colors group cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-[1.02] transition-transform duration-500">
             <ArrowLeft size={16} />
           </div>
           Voltar
@@ -90,7 +93,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
 
       <main className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div 
-          initial={isMounted ? { opacity: 0, y: 15 } : false}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-8"
@@ -114,12 +117,14 @@ export default function GameView({ game, otherGames }: GameViewProps) {
             </div>
             
             <div className="hidden md:flex items-center gap-4 bg-white/50 backdrop-blur-sm p-4 rounded-3xl border border-white">
-              <div className="flex -space-x-2">
-                {[1,2,3].map(i => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-zen-cream flex items-center justify-center text-[10px]">👶</div>
+              <div className="flex -space-x-2" aria-hidden="true">
+                {[ShieldCheck, Clock, Heart].map((StatusIcon, i) => (
+                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-zen-cream flex items-center justify-center text-zen-gray/70">
+                    <StatusIcon size={14} />
+                  </div>
                 ))}
               </div>
-              <p className="text-xs font-bold opacity-60">+1.2k crianças jogaram hoje</p>
+              <p className="text-xs font-bold opacity-60">Sem anúncios, sem pressa e grátis</p>
             </div>
           </header>
 
@@ -170,7 +175,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                         backgroundColor: `var(--${game.color})`,
                       }}
                     >
-                      <div className="absolute inset-0 rounded-full border-4 border-white/40 animate-ping opacity-20" />
+                      <div className="absolute inset-0 rounded-full border-4 border-white/40 opacity-20" />
                       <GameIcon className="w-10 h-10 md:w-20 md:h-20 text-white drop-shadow-md" />
                     </motion.div>
 
@@ -181,25 +186,26 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                     </div>
 
                     <motion.button 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="relative z-50 text-white px-6 md:px-12 py-3 md:py-6 rounded-full text-base md:text-2xl font-black flex items-center gap-2 md:gap-4 shadow-2xl transition-all cursor-pointer border-b-4 md:border-b-8 group"
+                      type="button"
+                      aria-label={`Começar o jogo ${game.title}`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="relative z-50 text-zen-gray px-6 md:px-12 py-3 md:py-6 rounded-full text-base md:text-2xl font-black flex items-center gap-2 md:gap-4 shadow-2xl transition-all cursor-pointer border-b-4 md:border-b-8 group focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-zen-green/50"
                       style={{ 
                         backgroundColor: `var(--${game.color})`,
                         borderColor: `var(--${game.color}-dark)`,
                         touchAction: "manipulation"
                       }}
-                      onTap={() => {
-                        setIsPlaying(true);
-                        try {
-                          soundManager.unlock();
-                        } catch (e) {}
+                      onPointerDown={(event) => {
+                        event.preventDefault();
+                        startGame();
                       }}
+                      onClick={startGame}
                     >
-                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-zen-gray transition-colors">
+                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/35 flex items-center justify-center group-hover:bg-white transition-colors duration-500">
                         <Play className="w-3 h-3 md:w-6 md:h-6" fill="currentColor" />
                       </div>
-                      <span className="drop-shadow-sm">JOGAR AGORA</span>
+                      <span>JOGAR AGORA</span>
                     </motion.button>
                   </div>
                   
@@ -227,9 +233,30 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                 </div>
               </div>
 
+              <div className="space-y-5 pt-8 border-t border-zen-gray/10">
+                <h2 className="text-2xl font-black flex items-center gap-2">
+                  <div className="w-2 h-8 rounded-full bg-zen-yellow" />
+                  Como Brincar
+                </h2>
+                <ol className="grid gap-3 text-sm md:text-base font-medium text-zen-gray/80">
+                  {[
+                    "Toque em jogar e deixe a criança explorar a tela no próprio ritmo.",
+                    "Observe junto, nomeando cores, formas ou bichinhos com frases curtas.",
+                    "Quando ela quiser parar, volte aos jogos sem cobrança de acertos ou pontuação.",
+                  ].map((step, index) => (
+                    <li key={step} className="flex gap-3 rounded-3xl bg-white/50 p-4 border border-white">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zen-cream text-xs font-black">
+                        {index + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
               {/* FAQ Section */}
               <div className="space-y-6 pt-8 border-t border-zen-gray/10">
-                <h3 className="text-xl font-black">Dúvidas Comuns</h3>
+                <h2 className="text-xl font-black">Dúvidas Comuns</h2>
                 <div className="grid gap-4">
                   {game.faq.map((item, i) => (
                     <div key={i} className="bg-white/50 p-6 rounded-3xl border border-white">
@@ -257,7 +284,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
                           alt={other.title} 
                           fill 
                           sizes="64px"
-                          className="object-cover group-hover:scale-110 transition-transform" 
+                          className="object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                         />
                       </div>
                       <div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { soundManager } from "@/lib/sounds";
 
 type ShapeKind = "circle" | "square" | "triangle" | "star" | "diamond" | "plus" | "egg" | "pentagon" | "blob" | "flower" | "star4";
@@ -65,7 +65,6 @@ const getStartPosition = (index: number, total: number) => {
   return { left: lefts[index], top: tops[index] };
 };
 
-const SHAPE_SIZE = 96;
 
 function getShapePath(kind: ShapeKind) {
   switch (kind) {
@@ -178,8 +177,8 @@ function DraggableShape({ shape, onMatch, areaRef }: DraggableShapeProps) {
         event.stopPropagation();
         handleDragEnd();
       }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       style={{ touchAction: "none", zIndex: 30 }}
       aria-label={`Arraste o ${shape.label}`}
       role="button"
@@ -338,7 +337,7 @@ export default function ArrastarFormas() {
         aria-live="polite"
       >
         <div className="rounded-full bg-zen-green px-6 py-2 shadow-sm">
-          <p className="text-lg font-bold text-white">Parabéns!</p>
+          <p className="text-lg font-bold text-zen-gray">Parabéns!</p>
         </div>
       </motion.div>
     </div>

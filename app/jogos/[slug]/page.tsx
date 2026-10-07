@@ -19,14 +19,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!game) return {};
 
+  const gameUrl = `/jogos/${game.slug}`;
+
   return {
-    title: `${game.seo.title}`,
+    title: game.seo.title,
     description: game.seo.description,
     keywords: game.seo.keywords,
+    alternates: {
+      canonical: gameUrl,
+    },
     openGraph: {
       title: game.seo.title,
       description: game.seo.description,
+      url: gameUrl,
       type: "website",
+      images: [
+        {
+          url: game.image,
+          alt: `${game.title} no PlayZulo`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: game.seo.title,
+      description: game.seo.description,
+      images: [game.image],
     },
   };
 }
@@ -39,11 +57,36 @@ export default async function GamePage({ params }: Props) {
     notFound();
   }
 
-  // Pegar 2 outros jogos aleatórios para a seção "Mais Jogos"
+  const currentIndex = games.findIndex((g) => g.slug === slug);
   const otherGames = games
     .filter((g) => g.slug !== slug)
-    .sort(() => Math.random() - 0.5)
+    .sort((a, b) => {
+      const distanceA = (games.findIndex((g) => g.slug === a.slug) - currentIndex + games.length) % games.length;
+      const distanceB = (games.findIndex((g) => g.slug === b.slug) - currentIndex + games.length) % games.length;
+      return distanceA - distanceB;
+    })
     .slice(0, 2);
 
-  return <GameView game={game} otherGames={otherGames} />;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: game.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <GameView game={game} otherGames={otherGames} />
+    </>
+  );
 }
