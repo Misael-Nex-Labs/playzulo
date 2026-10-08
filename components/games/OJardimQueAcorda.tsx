@@ -55,7 +55,6 @@ function FlowerShape({ flower }: { flower: Flower }) {
 export default function OJardimQueAcorda() {
   const [flowers, setFlowers] = useState<Flower[]>([]);
   const nextId = useRef(0);
-  const lastTouchAt = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const createFlower = useCallback((clientX: number, clientY: number) => {
@@ -78,15 +77,15 @@ export default function OJardimQueAcorda() {
   }, []);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch" && Date.now() - lastTouchAt.current < 500) return;
+    event.preventDefault();
     createFlower(event.clientX, event.clientY);
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     event.preventDefault();
+    if ("PointerEvent" in window) return;
     const touch = event.changedTouches[0];
     if (!touch) return;
-    lastTouchAt.current = Date.now();
     createFlower(touch.clientX, touch.clientY);
   };
 

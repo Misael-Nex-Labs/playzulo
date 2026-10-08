@@ -88,7 +88,6 @@ export default function CoresDosBichinhos() {
   const [page, setPage] = useState(0);
   const [animals, setAnimals] = useState(PAGES[0]);
   const [activeColor, setActiveColor] = useState<{ animal: string; label: string } | null>(null);
-  const lastTouchAt = useRef(0);
   const activeColorTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => {
@@ -108,12 +107,12 @@ export default function CoresDosBichinhos() {
 
   const handleTouch = (event: React.TouchEvent, action: () => void) => {
     event.preventDefault();
-    lastTouchAt.current = event.timeStamp;
-    action();
+    if (!("PointerEvent" in window)) action();
   };
 
   const handlePointer = (event: React.PointerEvent, action: () => void) => {
-    if (event.timeStamp - lastTouchAt.current >= 450) action();
+    event.preventDefault();
+    action();
   };
 
   const changePage = (nextPage: number) => {
