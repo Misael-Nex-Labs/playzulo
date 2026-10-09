@@ -46,7 +46,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Jogos para tocar",
         short_name: "Tocar",
         description: "Abrir jogos simples de toque e causa e efeito.",
-        url: "/categorias/tocar",
+        url: "/categorias/tocar-na-tela",
         icons: [{ src: "/icon-192.png", sizes: "192x192" }],
       },
     ],

@@ -189,7 +189,7 @@ export default function MemoriaDosBichinhos() {
         {cards.map((card) => {
           const faceUp = card.faceUp || card.matched;
           return (
-            <motion.button key={card.id} type="button" aria-label={faceUp ? ANIMAL_LABELS[card.animal] : "Virar carta"} className="relative aspect-square min-w-0 rounded-3xl outline-none focus-visible:ring-4 focus-visible:ring-zen-green/60" style={{ touchAction: "none" }} onPointerDown={() => turnCard(card.id)} onTouchStart={(event) => event.preventDefault()} whileTap={{ scale: 0.98 }}>
+            <motion.button key={card.id} type="button" aria-label={faceUp ? ANIMAL_LABELS[card.animal] : "Virar carta"} className="relative aspect-square min-w-0 rounded-3xl outline-none focus-visible:ring-4 focus-visible:ring-zen-green/60" style={{ touchAction: "none" }} onPointerDown={() => turnCard(card.id)} whileTap={{ scale: 0.98 }}>
               <motion.div className="absolute inset-0 h-full w-full" animate={{ rotateY: faceUp ? 180 : 0 }} transition={{ duration: 0.55, ease: "easeInOut" }} style={{ transformStyle: "preserve-3d" }}>
                 <div className="absolute inset-0 h-full w-full" style={{ backfaceVisibility: "hidden" }}><CardBack /></div>
                 <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded-3xl border-4 border-white/70 bg-zen-bg shadow-md" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
@@ -204,7 +204,7 @@ export default function MemoriaDosBichinhos() {
       <motion.div initial={false} animate={{ opacity: complete ? 1 : 0, y: complete ? 0 : 8 }} transition={{ duration: 0.6, ease: "easeInOut" }} className="relative z-10 mt-3 min-h-7 text-center text-base font-black sm:mt-5 sm:text-lg" aria-live="polite">
         {gameFinished ? "Você encontrou todos os bichinhos!" : complete ? "Muito bem! Vamos para o próximo nível." : ""}
       </motion.div>
-      {gameFinished && <motion.button type="button" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} onPointerDown={restart} onTouchStart={(event) => event.preventDefault()} className="relative z-10 mt-3 rounded-full bg-zen-green px-6 py-3 text-base font-bold text-zen-gray shadow-sm transition-colors duration-500 hover:bg-zen-green-dark">Jogar de novo</motion.button>}
+      {gameFinished && <motion.button type="button" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} onPointerDown={restart} className="relative z-10 mt-3 rounded-full bg-zen-green px-6 py-3 text-base font-bold text-zen-gray shadow-sm transition-colors duration-500 hover:bg-zen-green-dark">Jogar de novo</motion.button>}
     </div>
   );
 }
