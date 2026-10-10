@@ -93,6 +93,10 @@ export default function Home() {
               Ambiente seguro, sem anúncios agitados e focado no aprendizado suave. 
               Feito com carinho para bebês e crianças de 1 a 5 anos.
             </p>
+            <p className="text-sm font-medium opacity-70 max-w-xl mx-auto leading-relaxed">
+              Para quem cuida de uma criança de 1 a 5 anos: basta deixar o dedo. Não há pressa, 
+              nenhum som agudo, nenhum anúncio — só descobertas seguras e calmas, no ritmo da criança.
+            </p>
           </motion.div>
 
           <motion.div
