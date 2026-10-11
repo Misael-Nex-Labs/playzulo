@@ -107,11 +107,18 @@ export default function CoresDosBichinhos() {
 
   const handleTouch = (event: React.TouchEvent, action: () => void) => {
     event.preventDefault();
-    if (!("PointerEvent" in window)) action();
+    // Always fire the action on touch. Many browsers (e.g. iOS Safari) report
+    // PointerEvent in the window but never fire pointer events for touch input,
+    // so the pointer handler above would never run and the button would be
+    // unresponsive on those devices.
+    action();
   };
 
   const handlePointer = (event: React.PointerEvent, action: () => void) => {
     event.preventDefault();
+    // On dual-input devices, touch already fired the action. Skip the pointer
+    // handler for touch pointers to avoid calling action twice.
+    if (event.pointerType === "touch") return;
     action();
   };
 
