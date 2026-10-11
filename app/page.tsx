@@ -3,7 +3,6 @@
 import { motion, Variants } from "framer-motion";
 import { 
   Pointer, 
-  Move, 
   Palette, 
   Shapes, 
   Brain, 
@@ -42,7 +41,6 @@ const tapEffect: Variants = {
 
 const categories = [
   { name: "Tocar na Tela", slug: "tocar-na-tela", icon: Pointer, color: "bg-zen-blue" },
-  { name: "Arrastar e Soltar", slug: "arrastar-e-soltar", icon: Move, color: "bg-zen-green" },
   { name: "Cores", slug: "cores", icon: Palette, color: "bg-zen-yellow" },
   { name: "Formas", slug: "formas", icon: Shapes, color: "bg-zen-pink" },
   { name: "Memória", slug: "memoria", icon: Brain, color: "bg-zen-cream" },

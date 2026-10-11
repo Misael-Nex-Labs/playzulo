@@ -5,7 +5,6 @@ const siteUrl = "https://playzulo.vercel.app";
 
 const categorySlugs = [
   "tocar-na-tela",
-  "arrastar-e-soltar",
   "cores",
   "formas",
   "memoria",

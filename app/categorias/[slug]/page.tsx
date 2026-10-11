@@ -17,14 +17,6 @@ const categories = [
     gameSlugs: ["tocar-nas-bolhas", "o-jardim-que-acorda"],
   },
   {
-    slug: "arrastar-e-soltar",
-    title: "Jogos de arrastar e soltar",
-    eyebrow: "Coordenação motora",
-    description:
-      "Jogos calmos para praticar movimentos de arrastar, encaixar e reconhecer relações visuais sem pressa.",
-    gameSlugs: ["arrastar-formas"],
-  },
-  {
     slug: "cores",
     title: "Jogos de cores",
     eyebrow: "Vocabulário visual",

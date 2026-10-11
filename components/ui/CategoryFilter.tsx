@@ -19,7 +19,6 @@ type CategoryOption = {
 const CATEGORIES: CategoryOption[] = [
   { label: "Todos", matches: () => true },
   { label: "Tocar", matches: (game: Game) => game.category === "tocar" },
-  { label: "Arrastar", matches: (game: Game) => game.slug === "arrastar-formas" },
   { label: "Cores", matches: (game: Game) => game.category === "cores" },
   { label: "Formas", matches: (game: Game) => game.category === "formas" },
   { label: "Memória", matches: (game: Game) => game.category === "memoria" },
