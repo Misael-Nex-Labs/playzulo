@@ -165,6 +165,19 @@ export default function TocarNasBolhas() {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              // On iOS Safari (and dual-input devices) `pointerType` may be
+              // "touch" even though `PointerEvent` exists in `window`, so the
+              // pointer handler skips touch pointers and the paired touch
+              // handler below guarantees the pop fires everywhere.
+              if (e.pointerType === "touch") return;
+              popBubble(bubble);
+            }}
+            onTouchStart={(event) => {
+              // Always fire the action on touch (iOS Safari reports `PointerEvent`
+              // in `window` but never fires pointer events for touch input).
+              // `preventDefault` keeps the pointer from also firing the action
+              // on dual-input devices.
+              event.preventDefault();
               popBubble(bubble);
             }}
             className="absolute rounded-full shadow-lg border-2 border-white/40 z-20"
