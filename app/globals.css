@@ -18,11 +18,16 @@
 :root {
   /* Variáveis nativas do CSS */
   --zen-blue: #e0f7ff;
-  --zen-green: #ABBB6C;
-  --zen-green-dark: #9AA557;
-  --zen-yellow: #ffe0b2;
-  --zen-pink: #f8bbd0;
+  --zen-blue-dark: #7fb3d5;
+  --zen-blue: #e0f7ff;
+  --zen-cream-dark: #b08d58;
   --zen-cream: #fff9c4;
+  --zen-green-dark: #9AA557;
+  --zen-green: #ABBB6C;
+  --zen-pink-dark: #d88fa8;
+  --zen-pink: #f8bbd0;
+  --zen-yellow-dark: #e0a800;
+  --zen-yellow: #ffe0b2;
   --zen-gray: #607d8b;
   --zen-bg: #fffcf5;
 
