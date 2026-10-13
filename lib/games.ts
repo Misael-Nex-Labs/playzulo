@@ -121,5 +121,26 @@ export const games: Game[] = [
     faq: [
       { question: 'Quantas cartas tem o jogo?', answer: 'Começa com 4 cartas e aumenta gradualmente até 12, mantendo o ritmo calmo.' }
     ]
+  },
+  {
+    id: '6',
+    slug: 'toque-nas-estrelas',
+    title: 'Toque nas Estrelas',
+    shortDescription: 'Toque nas estrelas e veja-pelas piscarem com um som suave de madeira.',
+    fullDescription: 'Um jogo de causa e efeito para as crianças mais novas. Estrelas coloridas e suaves aparecem num céu calmo. Ao tocá-las, elas piscam com um brilho suave e um som macio de madeira.\\n\\nIdeal para explorar a causa e o efeito, desenvolvendo a coordenação motora fina e a atenção visual, sem pressa e sem sobrecarga sensorial. As cores foram cuidadosamente selecionadas para manter a criança calma e focada.',
+    category: 'tocar',
+    ageRange: '1-3 anos',
+    icon: 'Star',
+    color: 'zen-pink',
+    image: '/images/toque-nas-estrelas.png',
+    seo: {
+      title: 'Jogo de Toque nas Estrelas Grátis para Crianças | PlayZulo',
+      description: 'Jogo educativo de causa e efeito para bebês. Toque nas estrelas e veja-pelas piscarem com um som suave de madeira, sem anúncios e sem pressa.',
+      keywords: ['jogo de estrelas', 'jogo de tocar', 'jogo para bebês', 'low-stim', 'educativo grátis']
+    },
+    faq: [
+      { question: 'Como esse jogo ajuda meu filho?', answer: 'Desenvolve a coordenação motora fina e a atenção visual, em um ritmo sem pressa.' },
+      { question: 'Tem pontuação ou vidas?', answer: 'Não. As estrelas ficam para exploração, sem contagem de acertos, temporizador e sem pressa.' }
+    ]
   }
 ];

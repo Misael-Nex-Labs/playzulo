@@ -1,19 +1,20 @@
 "use client";
 
 import { Game } from "@/lib/games";
-import { 
-  ArrowLeft, 
-  Gamepad2, 
-  MousePointer2, 
-  Sprout, 
-  Shapes, 
-  Palette, 
+import {
+  ArrowLeft,
+  Gamepad2,
+  MousePointer2,
+  Sprout,
+  Shapes,
+  Palette,
   Brain,
+  Star,
   Play,
   Clock,
   ShieldCheck,
   ChevronRight,
-  Heart
+  Heart,
 } from "lucide-react";
 import React, { useState } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -40,6 +41,7 @@ const iconMap: Record<string, LucideIcon> = {
   'Shapes': Shapes,
   'Palette': Palette,
   'Brain': Brain,
+  'Star': Star,
 };
 
 export default function GameView({ game, otherGames }: GameViewProps) {
