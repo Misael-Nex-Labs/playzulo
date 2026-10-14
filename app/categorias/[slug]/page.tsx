@@ -14,7 +14,7 @@ const categories = [
     eyebrow: "Causa e efeito",
     description:
       "Atividades simples para a criança tocar, observar uma resposta suave e explorar no próprio ritmo.",
-    gameSlugs: ["tocar-nas-bolhas", "o-jardim-que-acorda"],
+    gameSlugs: ["tocar-nas-bolhas", "o-jardim-que-acorda", "toque-nas-estrelas"],
   },
   {
     slug: "cores",
