@@ -40,6 +40,14 @@ const categories = [
       "Jogos de observação e pares, sem cronômetro, pontuação competitiva ou pressão para acertar rápido.",
     gameSlugs: ["memoria-dos-bichinhos"],
   },
+  {
+    slug: "numeros",
+    title: "Jogos de números",
+    eyebrow: "Quantidade e contagem",
+    description:
+      "Atividades de contagem e quantidades em tons pastéis, sem pressa e sem estímulo competitivo.",
+    gameSlugs: ["numeros"],
+  },
 ] as const;
 
 type Props = {

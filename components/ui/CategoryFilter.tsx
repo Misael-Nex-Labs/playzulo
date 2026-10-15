@@ -22,6 +22,7 @@ const CATEGORIES: CategoryOption[] = [
   { label: "Cores", matches: (game: Game) => game.category === "cores" },
   { label: "Formas", matches: (game: Game) => game.category === "formas" },
   { label: "Memória", matches: (game: Game) => game.category === "memoria" },
+  { label: "Números", matches: (game: Game) => game.category === "numeros" },
 ];
 
 export default function CategoryFilter({ games }: CategoryFilterProps) {

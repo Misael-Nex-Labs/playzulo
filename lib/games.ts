@@ -4,7 +4,7 @@ export interface Game {
   title: string;
   shortDescription: string;
   fullDescription: string;
-  category: 'tocar' | 'arrastar' | 'cores' | 'formas' | 'memoria';
+  category: 'tocar' | 'arrastar' | 'cores' | 'formas' | 'memoria' | 'numeros';
   ageRange: '1-3 anos' | '3-5 anos';
   icon: string; // Nome do ícone do Lucide
   color: string; // Nome da cor zen (ex: zen-green)
@@ -127,7 +127,7 @@ export const games: Game[] = [
     slug: 'toque-nas-estrelas',
     title: 'Toque nas Estrelas',
     shortDescription: 'Toque nas estrelas e veja-pelas piscarem com um som suave de madeira.',
-    fullDescription: 'Um jogo de causa e efeito para as crianças mais novas. Estrelas coloridas e suaves aparecem num céu calmo. Ao tocá-las, elas piscam com um brilho suave e um som macio de madeira.\\n\\nIdeal para explorar a causa e o efeito, desenvolvendo a coordenação motora fina e a atenção visual, sem pressa e sem sobrecarga sensorial. As cores foram cuidadosamente selecionadas para manter a criança calma e focada.',
+    fullDescription: 'Um jogo de causa e efeito para as crianças mais novas. Estrelas coloridas e suaves aparecem num céu calmo. Ao tocá-las, elas piscam com um brilho suave e um som macio de madeira.\n\nIdeal para explorar a causa e o efeito, desenvolvendo a coordenação motora fina e a atenção visual, sem pressa e sem sobrecarga sensorial. As cores foram cuidadosamente selecionadas para manter a criança calma e focada.',
     category: 'tocar',
     ageRange: '1-3 anos',
     icon: 'Star',
@@ -141,6 +141,27 @@ export const games: Game[] = [
     faq: [
       { question: 'Como esse jogo ajuda meu filho?', answer: 'Desenvolve a coordenação motora fina e a atenção visual, em um ritmo sem pressa.' },
       { question: 'Tem pontuação ou vidas?', answer: 'Não. As estrelas ficam para exploração, sem contagem de acertos, temporizador e sem pressa.' }
+    ]
+  },
+  {
+    id: '7',
+    slug: 'numeros',
+    title: 'Números',
+    shortDescription: 'Toque em um número e veja a quantidade aparecer com um som macio de madeira.',
+    fullDescription: 'Um jogo de contagem calmo e seguro para crianças de 3 a 5 anos. Um número aparece grande e suave, e ao tocá-lo ele brilha com um som de madeira e revela sua quantidade com pequenas bolotinhas. Sem pressa, sem pontuação e sem tempo. Apenas contar ao próprio ritmo, desenvolvendo o vocabulário numérico e a concentração visual.',
+    category: 'numeros',
+    ageRange: '3-5 anos',
+    icon: '123',
+    color: 'zen-yellow',
+    image: '/images/numeros.png',
+    seo: {
+      title: 'Jogo de Números Grátis para Crianças | PlayZulo',
+      description: 'Jogo educativo de contagem para crianças de 3 a 5 anos. Toque em um número e veja a quantidade aparecer com um som suave de madeira, sem anúncios e sem pressa.',
+      keywords: ['jogo de números', 'contagem para crianças', 'números 1 2 3', 'jogo educativo', 'low-stim']
+    },
+    faq: [
+      { question: 'Como esse jogo ajuda meu filho?', answer: 'Ajuda a reconhecer números e a associar cada número à sua quantidade de objetos.' },
+      { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender a ponto de brincar.' }
     ]
   }
 ];
