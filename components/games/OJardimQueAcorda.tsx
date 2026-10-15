@@ -78,15 +78,22 @@ export default function OJardimQueAcorda() {
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     event.preventDefault();
+    // On dual-input devices, touch already fired the action. Skip the pointer
+    // handler for touch pointers to avoid creating a flower twice.
+    if (event.pointerType === "touch") return;
     createFlower(event.clientX, event.clientY);
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     event.preventDefault();
-    if ("PointerEvent" in window) return;
+    // Always fire the action on touch. Some mobile browsers report
+    // PointerEvent in `window` but never fire pointer events for touch input,
+    // so the pointer handler above would skip the action and the paired touch
+    // handler guarantees flowers appear on those devices.
     const touch = event.changedTouches[0];
-    if (!touch) return;
-    createFlower(touch.clientX, touch.clientY);
+    if (touch) {
+      createFlower(touch.clientX, touch.clientY);
+    }
   };
 
   const wakeFlower = (id: number, event: React.PointerEvent<HTMLButtonElement>) => {
