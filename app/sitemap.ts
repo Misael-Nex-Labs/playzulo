@@ -8,6 +8,7 @@ const categorySlugs = [
   "cores",
   "formas",
   "memoria",
+  "numeros",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
