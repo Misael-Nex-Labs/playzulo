@@ -21,6 +21,7 @@ import type { LucideIcon } from "lucide-react";
 import TocarNasBolhas from "@/components/games/TocarNasBolhas";
 import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
 import ToqueNasEstrelas from "@/components/games/ToqueNasEstrelas";
+import Numeros from "@/components/games/Numeros";
 import { soundManager } from "@/lib/sounds";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -67,6 +68,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
     'memoria-dos-bichinhos': <MemoriaDosBichinhos />,
     'cores-dos-bichinhos': <CoresDosBichinhos />,
     'toque-nas-estrelas': <ToqueNasEstrelas />,
+    'numeros': <Numeros />,
   };
 
   return (
