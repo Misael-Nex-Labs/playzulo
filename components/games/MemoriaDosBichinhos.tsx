@@ -189,7 +189,14 @@ export default function MemoriaDosBichinhos() {
         {cards.map((card) => {
           const faceUp = card.faceUp || card.matched;
           return (
-            <motion.button key={card.id} type="button" aria-label={faceUp ? ANIMAL_LABELS[card.animal] : "Virar carta"} className="relative aspect-square min-w-0 rounded-3xl outline-none focus-visible:ring-4 focus-visible:ring-zen-green/60" style={{ touchAction: "none" }} onPointerDown={() => turnCard(card.id)} whileTap={{ scale: 0.98 }}>
+            <motion.button key={card.id} type="button" aria-label={faceUp ? ANIMAL_LABELS[card.animal] : "Virar carta"} className="relative aspect-square min-w-0 rounded-3xl outline-none focus-visible:ring-4 focus-visible:ring-zen-green/60" style={{ touchAction: "none" }} onPointerDown={(event) => {
+              if (event.pointerType === "touch") return;
+              turnCard(card.id);
+            }}
+            onTouchStart={(event) => {
+              event.preventDefault();
+              turnCard(card.id);
+            }} whileTap={{ scale: 0.98 }}>
               <motion.div className="absolute inset-0 h-full w-full" animate={{ rotateY: faceUp ? 180 : 0 }} transition={{ duration: 0.55, ease: "easeInOut" }} style={{ transformStyle: "preserve-3d" }}>
                 <div className="absolute inset-0 h-full w-full" style={{ backfaceVisibility: "hidden" }}><CardBack /></div>
                 <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded-3xl border-4 border-white/70 bg-zen-bg shadow-md" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
