@@ -59,7 +59,7 @@ export default function ToqueNasEstrelas() {
           <div
             key={star.id}
             className="absolute left-0 top-0 select-none"
-            style={{ left: `${star.x * 100}%`, top: `${star.y * 100}%`, pointerEvents: "none" }}
+            style={{ left: `${star.x * 100}%`, top: `${star.y * 100}%`, transform: "translate(-50%, -50%)" }}
           >
             <motion.div
               initial={{ opacity: 0.5, scale: 0.8 }}
