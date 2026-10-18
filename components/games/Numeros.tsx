@@ -41,8 +41,9 @@ export default function Numeros() {
       <div className="relative flex h-full w-full flex-col items-center justify-center p-6">
         <AnimatePresence mode="wait">
           {NUMBERS.map((number) => (
-            <motion.div
+            <motion.button
               key={number}
+              type="button"
               initial={{ opacity: 0, scale: 0.8, y: 10 }}
               animate={{ opacity: activeNumber === number ? 1 : 0.55, scale: activeNumber === number ? 1.08 : 1, y: activeNumber === number ? 0 : 0 }}
               exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.4 } }}
@@ -57,7 +58,13 @@ export default function Numeros() {
                 event.preventDefault();
                 handleTap(number);
               }}
-              className="flex flex-col items-center gap-5"
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  handleTap(number);
+                }
+              }}
+              className="flex flex-col items-center gap-5 p-0 m-0 border-0 bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-zen-green/60"
             >
               <span
                 className="text-7xl font-black font-display leading-none tracking-tight"
@@ -80,7 +87,7 @@ export default function Numeros() {
                   />
                 ))}
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </AnimatePresence>
       </div>
