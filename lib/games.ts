@@ -126,16 +126,16 @@ export const games: Game[] = [
     id: '6',
     slug: 'toque-nas-estrelas',
     title: 'Toque nas Estrelas',
-    shortDescription: 'Toque nas estrelas e veja-pelas piscarem com um som suave de madeira.',
-    fullDescription: 'Um jogo de causa e efeito para as crianças mais novas. Estrelas coloridas e suaves aparecem num céu calmo. Ao tocá-las, elas piscam com um brilho suave e um som macio de madeira.\n\nIdeal para explorar a causa e o efeito, desenvolvendo a coordenação motora fina e a atenção visual, sem pressa e sem sobrecarga sensorial. As cores foram cuidadosamente selecionadas para manter a criança calma e focada.',
+    shortDescription: 'Toque nas estrelas do céu sereno e veja elas brilharem com notas suaves.',
+    fullDescription: 'Um jogo de causa e efeito para as crianças mais novas. Estrelinhas acolhedoras aparecem num céu azul sereno com lua crescente. Ao tocá-las, elas sorriem, espalham mini-estrelas brilhantes e tocam notas suaves de xilofone de madeira.\n\nIdeal para explorar a causa e o efeito, desenvolvendo a coordenação motora fina e a atenção visual, sem pressa e sem sobrecarga sensorial. As cores foram cuidadosamente selecionadas para manter a criança calma e focada.',
     category: 'tocar',
     ageRange: '1-3 anos',
     icon: 'Star',
-    color: 'zen-pink',
-    image: '/images/toque-nas-estrelas.png',
+    color: 'zen-blue',
+    image: '/images/toque-nas-estrelas.png?v=2',
     seo: {
       title: 'Jogo de Toque nas Estrelas Grátis para Crianças | PlayZulo',
-      description: 'Jogo educativo de causa e efeito para bebês. Toque nas estrelas e veja-pelas piscarem com um som suave de madeira, sem anúncios e sem pressa.',
+      description: 'Jogo educativo de causa e efeito para bebês. Toque nas estrelas e veja elas brilharem com notas suaves de madeira, sem anúncios e sem pressa.',
       keywords: ['jogo de estrelas', 'jogo de tocar', 'jogo para bebês', 'low-stim', 'educativo grátis']
     },
     faq: [
@@ -147,21 +147,21 @@ export const games: Game[] = [
     id: '7',
     slug: 'numeros',
     title: 'Números',
-    shortDescription: 'Toque em um número e veja a quantidade aparecer com um som macio de madeira.',
-    fullDescription: 'Um jogo de contagem calmo e seguro para crianças de 3 a 5 anos. Um número aparece grande e suave, e ao tocá-lo ele brilha com um som de madeira e revela sua quantidade com pequenas bolotinhas. Sem pressa, sem pontuação e sem tempo. Apenas contar ao próprio ritmo, desenvolvendo o vocabulário numérico e a concentração visual.',
+    shortDescription: 'Explore os números de 1 a 10 com animações e sons exclusivos para cada quantidade.',
+    fullDescription: 'Um jogo de contagem calmo e seguro para crianças de 3 a 5 anos. Escolha qualquer número de 1 a 10 para descobrir sua quantidade com elementos da natureza — sóis, nuvens, flores, folhas, estrelas e mais — cada um com sua própria animação suave e melodia de madeira.\n\nSem pressa, sem pontuação e sem tempo. A criança também pode tocar em cada objeto individualmente para contar no próprio ritmo.',
     category: 'numeros',
     ageRange: '3-5 anos',
     icon: '123',
     color: 'zen-yellow',
-    image: '/images/numeros.png',
+    image: '/images/numeros.png?v=2',
     seo: {
       title: 'Jogo de Números Grátis para Crianças | PlayZulo',
-      description: 'Jogo educativo de contagem para crianças de 3 a 5 anos. Toque em um número e veja a quantidade aparecer com um som suave de madeira, sem anúncios e sem pressa.',
-      keywords: ['jogo de números', 'contagem para crianças', 'números 1 2 3', 'jogo educativo', 'low-stim']
+      description: 'Jogo educativo de contagem de 1 a 10 para crianças de 3 a 5 anos. Toque em um número e veja sua animação e som suaves de madeira, sem anúncios.',
+      keywords: ['jogo de números', 'contagem para crianças', 'números 1 a 10', 'jogo educativo', 'low-stim']
     },
     faq: [
-      { question: 'Como esse jogo ajuda meu filho?', answer: 'Ajuda a reconhecer números e a associar cada número à sua quantidade de objetos.' },
-      { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender a ponto de brincar.' }
+      { question: 'Como esse jogo ajuda meu filho?', answer: 'Ajuda a reconhecer os números de 1 a 10 e a associar cada número à sua quantidade de objetos com estímulos visuais e sonoros calmos.' },
+      { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender brincando.' }
     ]
   }
 ];
