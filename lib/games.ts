@@ -4,7 +4,7 @@ export interface Game {
   title: string;
   shortDescription: string;
   fullDescription: string;
-  category: 'tocar' | 'arrastar' | 'cores' | 'formas' | 'memoria' | 'numeros';
+  category: 'tocar' | 'arrastar' | 'cores' | 'formas' | 'memoria' | 'numeros' | 'letras';
   ageRange: '1-3 anos' | '3-5 anos';
   icon: string; // Nome do ícone do Lucide
   color: string; // Nome da cor zen (ex: zen-green)
@@ -161,6 +161,27 @@ export const games: Game[] = [
     },
     faq: [
       { question: 'Como esse jogo ajuda meu filho?', answer: 'Ajuda a reconhecer os números de 1 a 10 e a associar cada número à sua quantidade de objetos com estímulos visuais e sonoros calmos.' },
+      { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender brincando.' }
+    ]
+  },
+  {
+    id: '8',
+    slug: 'letrinha',
+    title: 'As Vogais',
+    shortDescription: 'Toque nas vogais e descubra palavras que começam com cada uma.',
+    fullDescription: 'Um jogo calmo para crianças de 3 a 5 anos. Toque em cada uma das vogais maiúsculas para explorar o som, ver uma palavra que começa com ela e brincar no próprio ritmo.\n\nSem pressa, sem pontuação e sem tempo. A ideia é que a criança explore as vogais e as palavras no ritmo da própria curiosidade, sem estímulos agressivos e sem foco em acertos ou velocidade.',
+    category: 'letras',
+    ageRange: '3-5 anos',
+    icon: 'BookOpen',
+    color: 'zen-green',
+    image: '/images/letrinha.png',
+    seo: {
+      title: 'Jogo de Vogais Grátis para Crianças | PlayZulo',
+      description: 'Jogo educativo de vogais maiúsculas para crianças de 3 a 5 anos. Toque em cada vogal e descubra uma palavra, sem anúncios e sem pressa.',
+      keywords: ['letra para crianças', 'jogo de letras', 'alfabetização', 'educativo grátis', 'low-stim', 'jogo de letras maiúsculas']
+    },
+    faq: [
+      { question: 'Como esse jogo ajuda meu filho?', answer: 'Explora o reconhecimento das vogais maiúsculas e a associação de cada uma a uma palavra familiar, em um ritmo sem pressa.' },
       { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender brincando.' }
     ]
   }

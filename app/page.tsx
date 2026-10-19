@@ -7,6 +7,7 @@ import {
   Shapes, 
   Brain, 
   Calculator,
+  BookOpen,
   ArrowRight, 
   Gamepad2, 
 } from "lucide-react";
@@ -46,6 +47,7 @@ const categories = [
   { name: "Formas", slug: "formas", icon: Shapes, color: "bg-zen-pink" },
   { name: "Memória", slug: "memoria", icon: Brain, color: "bg-zen-cream" },
   { name: "Números", slug: "numeros", icon: Calculator, color: "bg-zen-pink" },
+  { name: "Vogais", slug: "letras", icon: BookOpen, color: "bg-zen-green" },
 ];
 
 const featuredGames = games.slice(0, 3);
@@ -120,7 +122,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold uppercase tracking-widest text-zen-gray/60">Categorias</h3>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {categories.map((cat, idx) => (
               <motion.div
                 key={cat.slug}

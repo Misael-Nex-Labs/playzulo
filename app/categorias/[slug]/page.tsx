@@ -48,6 +48,13 @@ const categories = [
       "Atividades de contagem e quantidades em tons pastéis, sem pressa e sem estímulo competitivo.",
     gameSlugs: ["numeros"],
   },
+  {
+    slug: "letras",
+    title: "Jogos de vogais",
+    eyebrow: "Alfabetização",
+    description: "Atividades para descobrir as vogais e palavras que começam com cada uma, sem pressa e sem estímulo competitivo.",
+    gameSlugs: ["letrinha"],
+  },
 ] as const;
 
 type Props = {

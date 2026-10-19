@@ -9,6 +9,7 @@ const categorySlugs = [
   "formas",
   "memoria",
   "numeros",
+  "letras",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
