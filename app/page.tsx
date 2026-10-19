@@ -6,6 +6,7 @@ import {
   Palette, 
   Shapes, 
   Brain, 
+  Calculator,
   ArrowRight, 
   Gamepad2, 
 } from "lucide-react";
@@ -44,6 +45,7 @@ const categories = [
   { name: "Cores", slug: "cores", icon: Palette, color: "bg-zen-yellow" },
   { name: "Formas", slug: "formas", icon: Shapes, color: "bg-zen-pink" },
   { name: "Memória", slug: "memoria", icon: Brain, color: "bg-zen-cream" },
+  { name: "Números", slug: "numeros", icon: Calculator, color: "bg-zen-pink" },
 ];
 
 const featuredGames = games.slice(0, 3);
