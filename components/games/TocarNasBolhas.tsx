@@ -80,11 +80,9 @@ export default function TocarNasBolhas() {
 
   const popBubble = (bubble: Bubble) => {
     soundManager.playPop();
-    
-    if (typeof navigator !== "undefined" && navigator.vibrate) {
-      navigator.vibrate(10);
-    }
 
+    // Haptics are not part of PlayZulo's low-stim feedback. The calming
+    // experience relies on the soft wood-block sound + the visual pop only.
     setPoppedCount(prev => prev + 1);
 
     // Criar partículas exatamente no centro da bolha
