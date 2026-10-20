@@ -4,6 +4,7 @@ import { Game } from "@/lib/games";
 import {
   ArrowLeft,
   Gamepad2,
+  Calculator,
   MousePointer2,
   Sprout,
   Shapes,
@@ -46,6 +47,7 @@ const iconMap: Record<string, LucideIcon> = {
   'Palette': Palette,
   'Brain': Brain,
   'Star': Star,
+  '123': Calculator,
   'BookOpen': BookOpen,
 };
 
