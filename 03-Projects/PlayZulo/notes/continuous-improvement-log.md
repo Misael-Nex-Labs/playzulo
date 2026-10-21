@@ -2,6 +2,13 @@
 
 Chronological notes from the `playzulo-evolution` heartbeat.
 
+## 2026-10-21 — add catalog integrity test guardrails
+
+**What:** Added Vitest and a `pnpm test` script with checks for unique URL-safe game slugs, required metadata/image/FAQ fields, and representation of each catalog category. This gives future catalog edits a quick regression check before build/push.
+
+**Validation:** `pnpm test` (3 checks passed), `pnpm lint` (success), and `pnpm build` (success, 25 static pages generated).
+
+
 ## 2026-10-13 — add "Toque nas Estrelas" low-stim cause-and-effect game
 
 **What:** Added a sixth game, "Toque nas Estrelas" (slug `toque-nas-estrelas`), to the `tocar` (cause and effect) category for 1-3yo children. It is a calm tap-and-peek experience: soft pastel stars on a night-sky background that flash and chime (soft wood-block sound) when touched. No scoring, no timer, no lives, no harsh stimulation — just cause and effect at the child's own pace.
