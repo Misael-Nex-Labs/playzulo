@@ -162,3 +162,19 @@ Brain notes updated: `03-Projects/PlayZulo/README.md` now reflects 7 games + 5 c
 **Validation:** `pnpm build` (success, all 22 routes prerendered) + `pnpm lint` (success, no warnings).
 
 **Commit:** 0726487 on development, pushed to `origin/development`. Not merged to main; open for Misael's dev -> main review.
+
+## 2026-10-20 — map the numbers game's `123` icon to the exported `Calculator` glyph
+
+**What:** `numeros` (Números) declares icon `123` in `lib/games.ts`, but `lucide-react` does not export a `123` icon and the game-view `iconMap` had no entry for it, so the Números start screen rendered a generic `Gamepad2` placeholder instead of a number glyph. A visible, inconsistent polish defect.
+
+**Fix:** Added `'123': Calculator` to the `iconMap` in `app/jogos/[slug]/game-view.tsx`, using the already-imported `Calculator` lucide icon. No game logic changed; the central pulsating icon now matches the site's other games.
+
+**Validation:** `pnpm build` (success, all game routes prerendered) + `pnpm lint` (success, no warnings).
+
+## 2026-10-21 — add "O Sol que Acorda" calm cause-and-effect game
+
+**What:** Added a ninth game for ages 1–3: a gentle sun in a pastel sky responds to touch with soft rays and a wood-like note. Added SEO metadata, a bespoke pastel thumbnail, game/category registration, and the Sun start-screen icon. No scores, timers, or pressure.
+
+**Validation:** `pnpm build` (success, 25 static pages generated) + `pnpm lint` (success). The route is included in the statically generated game routes.
+
+**Commit:** `45b1852` on development, pushed to `origin/development`; not merged to `main`.
