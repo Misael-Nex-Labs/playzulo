@@ -1,3 +1,5 @@
+import { sunGame } from "@/lib/sun-game";
+
 export interface Game {
   id: string;
   slug: string;
@@ -184,5 +186,6 @@ export const games: Game[] = [
       { question: 'Como esse jogo ajuda meu filho?', answer: 'Explora o reconhecimento das vogais maiúsculas e a associação de cada uma a uma palavra familiar, em um ritmo sem pressa.' },
       { question: 'É seguro para crianças de 3 anos?', answer: 'Sim, o design é simples e sem pressão, ideal para aprender brincando.' }
     ]
-  }
+  },
+  sunGame,
 ];

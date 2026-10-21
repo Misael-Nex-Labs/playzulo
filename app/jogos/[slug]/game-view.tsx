@@ -12,6 +12,7 @@ import {
   Brain,
   Star,
   BookOpen,
+  Sun,
   Play,
   Clock,
   ShieldCheck,
@@ -25,6 +26,7 @@ import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
 import ToqueNasEstrelas from "@/components/games/ToqueNasEstrelas";
 import Numeros from "@/components/games/Numeros";
 import Letrinha from "@/components/games/Letrinha";
+import Sol from "@/components/games/Sol";
 import { soundManager } from "@/lib/sounds";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -49,6 +51,7 @@ const iconMap: Record<string, LucideIcon> = {
   'Star': Star,
   '123': Calculator,
   'BookOpen': BookOpen,
+  'Sun': Sun,
 };
 
 export default function GameView({ game, otherGames }: GameViewProps) {
@@ -75,6 +78,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
     'toque-nas-estrelas': <ToqueNasEstrelas />,
     'numeros': <Numeros />,
     'letrinha': <Letrinha />,
+    'sol': <Sol />,
   };
 
   return (
