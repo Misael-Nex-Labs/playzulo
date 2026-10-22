@@ -185,3 +185,11 @@ Brain notes updated: `03-Projects/PlayZulo/README.md` now reflects 7 games + 5 c
 **Validation:** `pnpm build` (success, 25 static pages generated) + `pnpm lint` (success). The route is included in the statically generated game routes.
 
 **Commit:** `45b1852` on development, pushed to `origin/development`; not merged to `main`.
+
+## 2026-10-22 — docs: update brain README to reflect 9 games on development
+
+**What:** The PlayZulo brain README (`03-Projects/PlayZulo/README.md`) still listed 8 games. Updated it to reflect the current state: 9 games on `development`, 6 categories, all site basics healthy (privacy, sitemap, robots, about, manifest). No game or layout code changed.
+
+**Validation:** `pnpm test` (6 passed), `pnpm build` (success, 25 static pages), `pnpm lint` (success). All green.
+
+**Commit:** `5bbbd47` on `development`, pushed to `origin/development`. Not merged to `main`.
