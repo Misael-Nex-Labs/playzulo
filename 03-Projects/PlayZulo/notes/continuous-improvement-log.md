@@ -2,11 +2,11 @@
 
 Chronological notes from the `playzulo-evolution` heartbeat.
 
-## 2026-10-21 — add catalog integrity test guardrails
+## 2026-10-22 — verify catalog image assets and content fields
 
-**What:** Added Vitest and a `pnpm test` script with checks for unique URL-safe game slugs, required metadata/image/FAQ fields, and representation of each catalog category. This gives future catalog edits a quick regression check before build/push.
+**What:** Extended the game catalog tests to check that every referenced thumbnail exists in `public/images`, each game's SEO keywords are populated, and FAQ questions/answers are non-empty. This catches broken cards and incomplete parent-facing metadata before release.
 
-**Validation:** `pnpm test` (3 checks passed), `pnpm lint` (success), and `pnpm build` (success, 25 static pages generated).
+**Validation:** `pnpm test` (6 checks passed), `pnpm lint` (success), and `pnpm build` (success; 25 static pages generated).
 
 
 ## 2026-10-13 — add "Toque nas Estrelas" low-stim cause-and-effect game

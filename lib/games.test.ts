@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { games } from "./games";
+
+const imagesDir = resolve(process.cwd(), "public", "images");
 
 const requiredCategories = ["tocar", "cores", "formas", "memoria", "numeros", "letras"] as const;
 
@@ -29,6 +33,32 @@ describe("game catalog", () => {
 
     for (const category of requiredCategories) {
       expect(categories.has(category)).toBe(true);
+    }
+  });
+});
+
+describe("game catalog — image assets", () => {
+  it("references an existing image file under public/images", () => {
+    for (const game of games) {
+      const imageName = game.image.split("?")[0].split("/").pop() ?? "";
+      expect(imageName, `missing image name for "${game.slug}"`).not.toBe("");
+
+      expect(existsSync(resolve(imagesDir, imageName)), `"${game.slug}" image not found: ${imageName}`).toBe(true);
+    }
+  });
+
+  it("has non-empty SEO keywords", () => {
+    for (const game of games) {
+      expect(game.seo.keywords?.length ?? 0).toBeGreaterThan(0);
+    }
+  });
+
+  it("has non-empty FAQ answers", () => {
+    for (const game of games) {
+      for (const item of game.faq) {
+        expect(item.question.trim()).not.toBe("");
+        expect(item.answer.trim()).not.toBe("");
+      }
     }
   });
 });
