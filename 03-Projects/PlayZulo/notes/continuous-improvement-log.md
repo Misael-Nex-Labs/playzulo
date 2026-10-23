@@ -193,3 +193,11 @@ Brain notes updated: `03-Projects/PlayZulo/README.md` now reflects 7 games + 5 c
 **Validation:** `pnpm test` (6 passed), `pnpm build` (success, 25 static pages), `pnpm lint` (success). All green.
 
 **Commit:** `5bbbd47` on `development`, pushed to `origin/development`. Not merged to `main`.
+
+## 2026-10-22 — add sitemap/robots coverage guardrails test
+
+**What:** Added `app/sitemap.test.ts` so the SEO indexability depends on a passing check instead of on manual verification. The test asserts the generated sitemap covers every game route, every category route, and the static site pages, and that `robots.ts` points at the generated sitemap. This guards the discoverability of the full catalog and the category pages.
+
+**Validation:** `pnpm test` (2 test files, 11 passed), `pnpm build` (success; 25 static pages generated), `pnpm lint` (success).
+
+**Commit:** `4c975e3` on `development`, pushed to `origin/development`. Not merged to `main`.
