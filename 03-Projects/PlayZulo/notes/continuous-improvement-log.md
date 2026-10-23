@@ -194,6 +194,16 @@ Brain notes updated: `03-Projects/PlayZulo/README.md` now reflects 7 games + 5 c
 
 **Commit:** `5bbbd47` on `development`, pushed to `origin/development`. Not merged to `main`.
 
+## 2026-10-23 — add keyboard activation to Toque nas Estrelas stars
+
+**What:** The `Toque nas Estrelas` star buttons were focusable `<button>`s but had no `onKeyDown` handler, so keyboard and screen-reader users could tab to them but not activate them. Matched the keyboard support already present in `Sol` and `Numeros`.
+
+**Fix:** Added `onKeyDown` (Enter/Space fires `activateStar` with `preventDefault()` to avoid double-firing) to each star button. No visual or audio change.
+
+**Validation:** `pnpm build` (success; 25 static pages) + `pnpm test` (11 passed) + `pnpm lint` (success).
+
+**Commit:** `b5e9852` on `development`, pushed to `origin/development`. Not merged to `main`.
+
 ## 2026-10-22 — add sitemap/robots coverage guardrails test
 
 **What:** Added `app/sitemap.test.ts` so the SEO indexability depends on a passing check instead of on manual verification. The test asserts the generated sitemap covers every game route, every category route, and the static site pages, and that `robots.ts` points at the generated sitemap. This guards the discoverability of the full catalog and the category pages.
