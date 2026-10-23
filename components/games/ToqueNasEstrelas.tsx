@@ -477,6 +477,13 @@ export default function ToqueNasEstrelas() {
               event.stopPropagation();
               activateStar(star);
             }}
+            onKeyDown={(event) => {
+              // Keyboard activation: Enter or Space.
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                activateStar(star);
+              }
+            }}
           >
             {/* Halo luminoso suave quando a estrela acorda */}
             <AnimatePresence>
