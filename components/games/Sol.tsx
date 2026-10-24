@@ -44,7 +44,6 @@ export default function Sol() {
     <div
       className="relative h-full w-full overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#cbe5f6] via-[#e0f7ff] to-[#eef9ff] text-zen-gray select-none"
       style={{ touchAction: "none" }}
-      role="application"
       aria-label="Céu azul sereno. Toque no sol para vê-lo brilhar e ouvir uma nota suave."
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">

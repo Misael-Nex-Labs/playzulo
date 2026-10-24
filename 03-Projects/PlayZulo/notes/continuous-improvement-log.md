@@ -2,6 +2,14 @@
 
 Chronological notes from the `playzulo-evolution` heartbeat.
 
+## 2026-10-24 — keyboard access and semantic groups for interactive scenes
+
+**What:** `O Jardim que Acorda` relied on pointer/touch for planting flowers, and flower buttons had no keyboard activation. Added keyboard planting at the center of the scene and Enter/Space activation for each flower. Removed `role="application"` from the garden, sun, and stars scenes so assistive technology can retain its normal navigation model; the garden now uses a labeled group.
+
+**Validation:** `pnpm build` (success; 25 static pages), `pnpm test` (3 files, 13 passed), and `pnpm lint` (success).
+
+**Commit:** pending.
+
 ## 2026-10-23 — guard game component and icon registrations
 
 **What:** Centralized the slug-to-component and game-icon registries in `lib/game-registry.tsx`, then added a test asserting every catalog game has both a playable component and a dedicated icon. This prevents registered catalog entries from silently opening without a game component or falling back to the generic icon.

@@ -96,8 +96,23 @@ export default function OJardimQueAcorda() {
     }
   };
 
-  const wakeFlower = (id: number, event: React.PointerEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // A child button (e.g. an already-grown flower) handles Enter/Space itself.
+    if ((event.target as HTMLElement).closest("button")) return;
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+
+    // Keyboard "tap": plant a flower at the center of the canvas.
+    const container = containerRef.current;
+    if (container) {
+      const rect = container.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        createFlower(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }
+    }
+  };
+
+  const wakeFlower = (id: number) => {
     soundManager.playPop();
     setFlowers((current) =>
       current.map((flower) =>
@@ -109,12 +124,14 @@ export default function OJardimQueAcorda() {
   return (
     <div
       ref={containerRef}
-      className="relative h-full w-full overflow-hidden rounded-[2rem] bg-sky-100"
+      className="relative h-full w-full overflow-hidden rounded-[2rem] bg-sky-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-zen-green"
       style={{ touchAction: "none" }}
       onPointerDown={handlePointerDown}
       onTouchStart={handleTouchStart}
-      role="application"
-      aria-label="Jardim interativo. Toque para fazer flores nascerem."
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      aria-label="Jardim interativo. Toque para fazer flores nascerem. Use Enter ou Espaço."
+      role="group"
     >
       <motion.div
         className="pointer-events-none absolute left-[8%] top-[13%] h-8 w-28 rounded-full bg-white/30 blur-sm"
@@ -153,8 +170,18 @@ export default function OJardimQueAcorda() {
               opacity: { duration: 0.7, ease: "easeInOut" },
               scale: { duration: 0.75, ease: "easeInOut" },
             }}
-            onPointerDown={(event) => wakeFlower(flower.id, event)}
+            onPointerDown={(event) => {
+              event.stopPropagation();
+              wakeFlower(flower.id);
+            }}
             onTouchStart={(event) => event.stopPropagation()}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                event.stopPropagation();
+                wakeFlower(flower.id);
+              }
+            }}
           >
             <FlowerShape flower={flower} />
           </motion.button>

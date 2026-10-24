@@ -374,7 +374,6 @@ export default function ToqueNasEstrelas() {
     <div
       className="relative h-full w-full overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#cbe5f6] via-[#e0f7ff] to-[#eef9ff] text-zen-gray select-none"
       style={{ touchAction: "none" }}
-      role="application"
       aria-label="Céu de estrelas calmo. Toque nas estrelas para vê-las brilhar e ouvir notas suaves."
     >
       {/* Lua Crescente Suave no canto superior */}
