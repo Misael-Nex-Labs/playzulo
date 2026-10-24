@@ -3,16 +3,6 @@
 import { Game } from "@/lib/games";
 import {
   ArrowLeft,
-  Gamepad2,
-  Calculator,
-  MousePointer2,
-  Sprout,
-  Shapes,
-  Palette,
-  Brain,
-  Star,
-  BookOpen,
-  Sun,
   Play,
   Clock,
   ShieldCheck,
@@ -20,44 +10,22 @@ import {
   Heart,
 } from "lucide-react";
 import React, { useState } from "react";
-import type { LucideIcon } from "lucide-react";
-import TocarNasBolhas from "@/components/games/TocarNasBolhas";
-import CoresDosBichinhos from "@/components/games/CoresDosBichinhos";
-import ToqueNasEstrelas from "@/components/games/ToqueNasEstrelas";
-import Numeros from "@/components/games/Numeros";
-import Letrinha from "@/components/games/Letrinha";
-import Sol from "@/components/games/Sol";
+import { iconMap, gameComponents, fallbackGameIcon } from "@/lib/game-registry";
 import { soundManager } from "@/lib/sounds";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import OJardimQueAcorda from "@/components/games/OJardimQueAcorda";
-import ArrastarFormas from "@/components/games/ArrastarFormas";
-import MemoriaDosBichinhos from "@/components/games/MemoriaDosBichinhos";
 
 interface GameViewProps {
   game: Game;
   otherGames: Game[];
 }
 
-// Mapeamento de ícones do games.ts para componentes Lucide
-const iconMap: Record<string, LucideIcon> = {
-  'MousePointer2': MousePointer2,
-  'Sprout': Sprout,
-  'Shapes': Shapes,
-  'Palette': Palette,
-  'Brain': Brain,
-  'Star': Star,
-  '123': Calculator,
-  'BookOpen': BookOpen,
-  'Sun': Sun,
-};
-
 export default function GameView({ game, otherGames }: GameViewProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const GameIcon = iconMap[game.icon] || Gamepad2;
+  const GameIcon = iconMap[game.icon] || fallbackGameIcon;
   const router = useRouter();
 
   const startGame = () => {
@@ -68,18 +36,7 @@ export default function GameView({ game, otherGames }: GameViewProps) {
     } catch {}
   };
 
-  // Mapa de componentes de jogo reais
-  const gameComponents: Record<string, React.ReactNode> = {
-    'tocar-nas-bolhas': <TocarNasBolhas />,
-    'o-jardim-que-acorda': <OJardimQueAcorda />,
-    'arrastar-formas': <ArrastarFormas />,
-    'memoria-dos-bichinhos': <MemoriaDosBichinhos />,
-    'cores-dos-bichinhos': <CoresDosBichinhos />,
-    'toque-nas-estrelas': <ToqueNasEstrelas />,
-    'numeros': <Numeros />,
-    'letrinha': <Letrinha />,
-    'sol': <Sol />,
-  };
+  // Mapa de componentes de jogo reais (registro centralizado em lib/game-registry)
 
   return (
     <div className="min-h-screen bg-zen-bg text-zen-gray font-sans pb-20 overflow-x-hidden">

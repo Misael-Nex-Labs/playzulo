@@ -2,6 +2,14 @@
 
 Chronological notes from the `playzulo-evolution` heartbeat.
 
+## 2026-10-23 — guard game component and icon registrations
+
+**What:** Centralized the slug-to-component and game-icon registries in `lib/game-registry.tsx`, then added a test asserting every catalog game has both a playable component and a dedicated icon. This prevents registered catalog entries from silently opening without a game component or falling back to the generic icon.
+
+**Validation:** `pnpm test` (3 files, 13 tests passed), `pnpm lint` (success), and `pnpm build` (success; 25 static pages generated).
+
+**Commit:** `91a4326` on `development`, pushed to `origin/development`; not merged to `main`.
+
 ## 2026-10-22 — verify catalog image assets and content fields
 
 **What:** Extended the game catalog tests to check that every referenced thumbnail exists in `public/images`, each game's SEO keywords are populated, and FAQ questions/answers are non-empty. This catches broken cards and incomplete parent-facing metadata before release.
