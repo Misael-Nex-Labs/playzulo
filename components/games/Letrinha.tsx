@@ -61,7 +61,8 @@ export default function Letrinha() {
               type="button"
               aria-label={`Letra ${v.letter}, ${v.word}`}
               onClick={(event) => {
-                // Pointer and touch handlers provide immediate input; reserve click for keyboard activation.
+                // Native button clicks cover keyboard activation only; pointer
+                // and touch input are handled by their immediate event handlers.
                 if (event.detail === 0) handleTap(i);
               }}
               onPointerDown={(event) => {
