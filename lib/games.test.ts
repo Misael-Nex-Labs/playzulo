@@ -53,6 +53,20 @@ describe("game catalog — image assets", () => {
     }
   });
 
+  it("keeps SEO titles unique across the catalog", () => {
+    const titles = games.map((game) => game.seo.title);
+    const unique = new Set(titles);
+
+    expect(unique.size).toBe(titles.length);
+  });
+
+  it("keeps SEO descriptions unique across the catalog", () => {
+    const descriptions = games.map((game) => game.seo.description);
+    const unique = new Set(descriptions);
+
+    expect(unique.size).toBe(descriptions.length);
+  });
+
   it("has non-empty FAQ answers", () => {
     for (const game of games) {
       for (const item of game.faq) {
